@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çocuklar İçin Web Tasarımı</title>
+    <style>
+        /* Renk Paleti Tanımlamaları */
+        /* Bu bölümde renk kodlarını istediğin paletle değiştirebilirsin. */
+        :root {
+            /* Palet 1: Pamuk Şeker Rüyası */
+            --cat-pink: #F8BBD0;
+            --cat-light-blue: #B3E5FC;
+            --cat-purple: #E1BEE7;
+            --cat-yellow: #FFECB3;
+            --cat-green: #C8E6C9;
+            --cat-cyan: #FFAB91;
+            
+            /* Palet 2: Yaz Güneşi Enerjisi */
+            /* --cat-pink: #FF007F; */
+            /* --cat-light-blue: #00BFFF; */
+            /* --cat-purple: #8A2BE2; */
+            /* --cat-yellow: #FFD700; */
+            /* --cat-green: #7CFC00; */
+            /* --cat-cyan: #FFA500; */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .hero-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Arka plan animasyonları */
+        .background-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .background-elements .sun {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            animation: pulse 5s infinite;
+        }
+
+        .background-elements .cloud {
+            position: absolute;
+            /* Bulutlar daha görünür olması için rengini değiştirdim */
+            fill: #e0e0e0;
+            animation-duration: 20s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        
+        .cloud-1 { top: 20%; left: -20%; transform: scale(1.2); animation-delay: 0s; animation-name: drift1; }
+        .cloud-2 { top: 40%; left: -30%; transform: scale(0.8); animation-delay: -10s; animation-name: drift2; }
+        .cloud-3 { top: 60%; left: -10%; transform: scale(1.5); animation-delay: -5s; animation-name: drift3; }
+        .cloud-4 { top: 80%; left: -25%; transform: scale(1.1); animation-delay: -15s; animation-name: drift4; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes drift1 {
+            0% { left: -20%; }
+            100% { left: 110%; }
+        }
+        @keyframes drift2 {
+            0% { left: -30%; }
+            100% { left: 120%; }
+        }
+        @keyframes drift3 {
+            0% { left: -10%; }
+            100% { left: 105%; }
+        }
+        @keyframes drift4 {
+            0% { left: -25%; }
+            100% { left: 115%; }
+        }
+
+        /* Kategori Kartları */
+        .category-container {
+            display: grid;
+            /* Kategori kartlarını 3x2 formatında göstermek için düzenledim */
+            grid-template-columns: repeat(3, minmax(200px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        /* Responsive düzenleme */
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+        
+        .category-card {
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-card h3 {
+            margin: 15px 0 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .category-card .icon {
+            font-size: 3rem;
+            line-height: 1;
+        }
+
+        /* Kart Renkleri */
+        .category-card.color-pink { background-color: var(--cat-pink); }
+        .category-card.color-light-blue { background-color: var(--cat-light-blue); }
+        .category-card.color-purple { background-color: var(--cat-purple); }
+        .category-card.color-yellow { background-color: var(--cat-yellow); }
+        .category-card.color-green { background-color: var(--cat-green); }
+        .category-card.color-cyan { background-color: var(--cat-cyan); }
+
+
+
+        .main-header {
+    width: 100%;
+    padding: 1.5rem 5%;
+    border-bottom: 2px solid var(--header-border);
+    background-size: 250px 40px; /* Desenin boyutu */
+    background-repeat: repeat;
+    background-image: linear-gradient(135deg, rgba(158, 232, 250, 0.1) 15%, transparent 35%, transparent 50%, rgba(229, 199, 223, 0.1) 50%, rgba(225, 225, 229, 0.1) 75%, transparent 75%, transparent);
+}
+
+.logo {
+    border : 2px solid var(--header-border);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--logo-color);
+}
+
+    </style>
+</head>
+<body>
+    
+       <header class="main-header">
+        <a href="index.html">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 2L14.47 8.53L21.5 9.53L16.5 14.47L17.94 21.5L12 17.77L6.06 21.5L7.5 14.47L2.5 9.53L9.53 8.53L12 2Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span> logo</span>
+            </div>
+        </a>
+    </header>
+    
+
+
+    <main class="hero-section">
+        
+        <!-- SVG Arka Plan Elementleri -->
+        <div class="background-elements">
+            <!-- Güneş -->
+            <div class="sun">
+                <svg width="200" height="200" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="125" cy="125" r="80" fill="#FFD97D" />
+                    <circle cx="125" cy="125" r="75" fill="#FFF455" />
+                    <circle cx="100" cy="115" r="7" fill="#4A4A4A" />
+                    <circle cx="150" cy="115" r="7" fill="#4A4A4A" />
+                    <path d="M110 145C115.667 155 134.333 155 140 145" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round" />
+                    <path d="M125 25V5M125 225V245M225 125H245M5 125H25M196.985 53.0152L211.127 38.8731M38.873 211.127L53.0152 196.985M196.985 196.985L211.127 211.127M38.8731 38.873L53.0152 53.0152" stroke="#FFD97D" stroke-width="10" stroke-linecap="round" />
+                </svg>
+            </div>
+            
+            <!-- Bulutlar -->
+            <div class="cloud cloud-1">
+                <svg viewBox="0 0 130 80" fill="currentColor">
+                    <path d="M115.7 54.3c-2.3-1.4-4.8 0-6.2 2.3 -9.1 15.2-26.6 23.4-44.5 23.4 -24.8 0-46.3-19.4-49.3-44.1 -0.4-3.1-3.2-5.4-6.3-5 -3.1 0.4-5.4 3.2-5 6.3 3.6 28.9 28.5 50.8 55.6 50.8 21.4 0 41.2-10.2 52.8-27.1C119.2 58.2 118 55.7 115.7 54.3zM108.9 31.3c-2.3-1.9-5.5-1.5-7.4 0.8 -9.5 11.2-24 17.6-39.5 17.6 -18.7 0-35.7-9.5-44-24.3 -1.3-2.3-4.2-3.2-6.5-1.9 -2.3 1.3-3.2 4.2-1.9 6.5 10 17.5 29.8 27.7 50.5 27.7 18.2 0 35-7.9 45.9-20.9C112.5 36.6 111.9 33.7 108.9 31.3z" />
+                </svg>
+            </div>
+            <div class="cloud cloud-2">
+                <svg viewBox="0 0 130 80" fill="currentColor">
+                    <path d="M115.7 54.3c-2.3-1.4-4.8 0-6.2 2.3 -9.1 15.2-26.6 23.4-44.5 23.4 -24.8 0-46.3-19.4-49.3-44.1 -0.4-3.1-3.2-5.4-6.3-5 -3.1 0.4-5.4 3.2-5 6.3 3.6 28.9 28.5 50.8 55.6 50.8 21.4 0 41.2-10.2 52.8-27.1C119.2 58.2 118 55.7 115.7 54.3zM108.9 31.3c-2.3-1.9-5.5-1.5-7.4 0.8 -9.5 11.2-24 17.6-39.5 17.6 -18.7 0-35.7-9.5-44-24.3 -1.3-2.3-4.2-3.2-6.5-1.9 -2.3 1.3-3.2 4.2-1.9 6.5 10 17.5 29.8 27.7 50.5 27.7 18.2 0 35-7.9 45.9-20.9C112.5 36.6 111.9 33.7 108.9 31.3z" />
+                </svg>
+            </div>
+            <div class="cloud cloud-3">
+                <svg viewBox="0 0 130 80" fill="currentColor">
+                    <path d="M115.7 54.3c-2.3-1.4-4.8 0-6.2 2.3 -9.1 15.2-26.6 23.4-44.5 23.4 -24.8 0-46.3-19.4-49.3-44.1 -0.4-3.1-3.2-5.4-6.3-5 -3.1 0.4-5.4 3.2-5 6.3 3.6 28.9 28.5 50.8 55.6 50.8 21.4 0 41.2-10.2 52.8-27.1C119.2 58.2 118 55.7 115.7 54.3zM108.9 31.3c-2.3-1.9-5.5-1.5-7.4 0.8 -9.5 11.2-24 17.6-39.5 17.6 -18.7 0-35.7-9.5-44-24.3 -1.3-2.3-4.2-3.2-6.5-1.9 -2.3 1.3-3.2 4.2-1.9 6.5 10 17.5 29.8 27.7 50.5 27.7 18.2 0 35-7.9 45.9-20.9C112.5 36.6 111.9 33.7 108.9 31.3z" />
+                </svg>
+            </div>
+            <div class="cloud cloud-4">
+                <svg viewBox="0 0 130 80" fill="currentColor">
+                    <path d="M115.7 54.3c-2.3-1.4-4.8 0-6.2 2.3 -9.1 15.2-26.6 23.4-44.5 23.4 -24.8 0-46.3-19.4-49.3-44.1 -0.4-3.1-3.2-5.4-6.3-5 -3.1 0.4-5.4 3.2-5 6.3 3.6 28.9 28.5 50.8 55.6 50.8 21.4 0 41.2-10.2 52.8-27.1C119.2 58.2 118 55.7 115.7 54.3zM108.9 31.3c-2.3-1.9-5.5-1.5-7.4 0.8 -9.5 11.2-24 17.6-39.5 17.6 -18.7 0-35.7-9.5-44-24.3 -1.3-2.3-4.2-3.2-6.5-1.9 -2.3 1.3-3.2 4.2-1.9 6.5 10 17.5 29.8 27.7 50.5 27.7 18.2 0 35-7.9 45.9-20.9C112.5 36.6 111.9 33.7 108.9 31.3z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Kategori Kartları -->
+        <div class="category-container">
+            <a href="#" class="category-card color-pink">
+                <span class="icon">🎨</span>
+                <h3>Boyama</h3>
+            </a>
+            <a href="#" class="category-card color-light-blue">
+                <span class="icon">📖</span>
+                <h3>Hikayeler</h3>
+            </a>
+            <a href="#" class="category-card color-purple">
+                <span class="icon">🎶</span>
+                <h3>Şarkılar</h3>
+            </a>
+            <a href="#" class="category-card color-green">
+                <span class="icon">🌱</span>
+                <h3>Doğa</h3>
+            </a>
+            <a href="#" class="category-card color-cyan">
+                <span class="icon">🚀</span>
+                <h3>Bilim</h3>
+            </a>
+            <a href="#" class="category-card color-yellow">
+                <span class="icon">🧩</span>
+                <h3>Bulmacalar</h3>
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>
