@@ -30,3 +30,39 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+
+
+
+/* === Üst Bar (Header) - Ortak Stil === */
+.main-header {
+    width: 100%;
+    padding: 1.5rem 5%;
+    border-bottom: 2px solid var(--header-border);
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--logo-color);
+}
+
+/* === Ana İçerik Alanı === */
+.content-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.content-container h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
