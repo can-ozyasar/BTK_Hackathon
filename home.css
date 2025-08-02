@@ -29,7 +29,7 @@ body {
 /* === Üst Bar (Header) === */
 .main-header {
     width: 100%;
-    padding: 1.5rem 5%; /* Kenarlardan boşluk */
+    padding: 1.5rem 2%; /* Kenarlardan boşluk */
     border-bottom: 2px solid var(--header-border);
     background-color: hsl(199, 73%, 65%); /* Üst bar arka plan rengi */
     /*arkaplan deseni */
@@ -52,6 +52,11 @@ body {
     font-size: 1.2rem;
     color: var(--logo-color);
    
+}
+.logo:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px); /* Yukarıya hafif hareket */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* === Ana İçerik Alanı (Hero) === */

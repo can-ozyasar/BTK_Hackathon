@@ -1,119 +1,96 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hikaye Oluşturma - Hayalperest Hikayeler</title>
-    <link rel="stylesheet" href="hikayeSec.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
+        <link rel="stylesheet" href="icerikDetaylandir.css">
 
+    <title>Hikaye Oluşturucu</title>
+   
+</head>
 <body>
 
-    <header class="main-header">
+
+
+ <header class="main-header">
         <a href="index.html">
             <div class="logo">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M12 2L14.47 8.53L21.5 9.53L16.5 14.47L17.94 21.5L12 17.77L6.06 21.5L7.5 14.47L2.5 9.53L9.53 8.53L12 2Z"
-                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        stroke="#4338CA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 <span> logo</span>
             </div>
         </a>
     </header>
 
-    <main class="content-container story-creation-page">
 
 
-        <div class="choice-card-container">
-            <div class="image-box">
-                <img src="https://via.placeholder.com/400x200" alt="Hikaye Kahramanı">
-            </div>
-            <div class="choice-content">
-                <h2>Hikayenin kahramanı kim olacak?</h2>
-                <div class="options-grid">
-                    <div class="option-card">
-                        <span class="icon">🚗</span>
-                        <span>Cesur bir şövalye</span>
-                    </div>
-                    <div class="option-card">
-                        <span class="icon">🐈</span>
-                        <span>Meraklı bir kedi</span>
-                    </div>
-                    <div class="option-card">
-                        <span class="icon">✨</span>
-                        <span>Parlak bir yıldız</span>
-                    </div>
-                    <div class="option-card">
-                        <span class="icon">🌳</span>
-                        <span>Gizemli bir ejderha</span>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Hikaye Oluşturucu</h1>
+            <p>Kendi maceranda kahramanın ol!</p>
         </div>
 
-        <div class="choice-card-container">
-            <div class="image-box">
-                <img src="https://via.placeholder.com/400x200" alt="Hikaye Mekanı">
-            </div>
-            <div class="choice-content">
-                <h2>Kahramanın nerede yaşıyor?</h2>
-                <div class="options-grid">
-                    <div class="option-card">
-                        <span class="icon">🏡</span>
-                        <span>Büyülü bir ormanda</span>
-                    </div>
-                    <div class="option-card">
-                        <span class="icon">🌊</span>
-                        <span>Derin deniz altında</span>
-                    </div>
-                    <div class="option-card">
-                        <span class="icon">🚀</span>
-                        <span>Uzak bir uzay gemisinde</span>
-                    </div>
-                    <div class="option-card">
-                        <span class="icon">☁️</span>
-                        <span>Bulutların üzerinde</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="choice-card-container">
-            <div class="image-box">
-                <img src="https://via.placeholder.com/400x200" alt="Hikaye Amacı">
-            </div>
-            <div class="choice-content">
-                <h2>Kahramanın en sevdiği şey ne?</h2>
-                <div class="options-grid">
-                    <div class="option-card">
-                        <span class="icon">🗺️</span>
-                        <span>Yeni maceralar aramak</span>
-                    </div>
-                    <div class="option-card">
-                        <span class="icon">🍩</span>
-                        <span>En lezzetli tatlıları yemek</span>
-                    </div>
-                    <div class="option-card">
-                        <span class="icon">🤝</span>
-                        <span>Yeni arkadaşlar edinmek</span>
-                    </div>
-                    <div class="option-card">
-                        <span class="icon">📖</span>
-                        <span>Büyülü kitaplar okumak</span>
-                    </div>
-                </div>
-            </div>
+        <div class="name-input-section">
+            <h2>Kahramanın adı ne olsun?</h2>
+            <input type="text" id="heroName" class="name-input" placeholder="Kahramanın adını gir..." maxlength="20">
         </div>
 
-        <button class="create-story-button">Hikayeni Oluştur</button>
+        <div class="content">
+            <div class="question visible" id="question1">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRkZGNEU2Ii8+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjEwMCIgcj0iNDAiIGZpbGw9IiNGRkE1MDAiLz4KPHJlY3QgeD0iMTgwIiB5PSIxNDAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI0RDMjYyNiIvPgo8L3N2Zz4K" alt="Kahraman" class="question-image">
+                <h3>Hikayenin kahramanı kim olacak?</h3>
+                <div class="options">
+                    <div class="option" data-choice="cesur">🛡️ Cesur bir şövalye</div>
+                    <div class="option" data-choice="merakli">🔍 Meraklı bir keşif</div>
+                    <div class="option" data-choice="buyucu">⚡ Büyülü bir çocuk</div>
+                    <div class="option" data-choice="dost">🐾 Dostlu bir hayvan</div>
+                </div>
+            </div>
 
-    </main>
-        <h1 class="creation-step">Adım 3/3</h1>
+            <div class="question" id="question2">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNDFCODgzIi8+CjxyZWN0IHg9IjUwIiB5PSIxNjAiIHdpZHRoPSIzMDAiIGhlaWdodD0iNDAiIGZpbGw9IiM2NTczNzMiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTMwIiByPSIyMCIgZmlsbD0iIzJENzI0RiIvPgo8Y2lyY2xlIGN4PSIzMDAiIGN5PSIxMjAiIHI9IjI1IiBmaWxsPSIjMkQ3MjRGIi8+CjxyZWN0IHg9IjIwMCIgeT0iNDAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzc5NTU0OCIvPgo8L3N2Zz4K" alt="Orman" class="question-image">
+                <h3>Kahramanımız nerede yaşıyor?</h3>
+                <div class="options">
+                    <div class="option" data-choice="orman">🌲 Büyülü bir ormanda</div>
+                    <div class="option" data-choice="kale">🏰 Eski bir kalede</div>
+                    <div class="option" data-choice="deniz">🏖️ Deniz kenarında</div>
+                    <div class="option" data-choice="bulutlar">☁️ Bulutların üstünde</div>
+                </div>
+            </div>
 
+            <div class="question" id="question3">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRkVEQ0QzIi8+CjxyZWN0IHg9IjE1MCIgeT0iNzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiNEOTY5MDQiIHJ4PSI1Ii8+CjxyZWN0IHg9IjE2MCIgeT0iODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNMTcwIDkwIEwyMzAgOTAgTTE3MCA5NSBMMjMwIDk1IE0xNzAgMTAwIEwyMzAgMTAwIiBzdHJva2U9IiMzNzMwMzciIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K" alt="Kitap" class="question-image">
+                <h3>Kahramanımız en sevdiği şey ne?</h3>
+                <div class="options">
+                    <div class="option" data-choice="macera">🗺️ Yeni maceralara atılmak</div>
+                    <div class="option" data-choice="kitap">📖 İlk kademe kitapları okumak</div>
+                    <div class="option" data-choice="arkadas">👥 Yeni arkadaşlar edinmek</div>
+                    <div class="option" data-choice="buyu">🪄 Büyülü hileler öğrenmek</div>
+                </div>
+            </div>
+              <div class="question" id="question4">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNDFCODgzIi8+CjxyZWN0IHg9IjUwIiB5PSIxNjAiIHdpZHRoPSIzMDAiIGhlaWdodD0iNDAiIGZpbGw9IiM2NTczNzMiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTMwIiByPSIyMCIgZmlsbD0iIzJENzI0RiIvPgo8Y2lyY2xlIGN4PSIzMDAiIGN5PSIxMjAiIHI9IjI1IiBmaWxsPSIjMkQ3MjRGIi8+CjxyZWN0IHg9IjIwMCIgeT0iNDAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzc5NTU0OCIvPgo8L3N2Zz4K" alt="Orman" class="question-image">
+                <h3>Kahramanımız nerede yaşıyor?</h3>
+                <div class="options">
+                    <div class="option" data-choice="orman">🌲 Büyülü bir ormanda</div>
+                    <div class="option" data-choice="kale">🏰 Eski bir kalede</div>
+                    <div class="option" data-choice="deniz">🏖️ Deniz kenarında</div>
+                    <div class="option" data-choice="bulutlar">☁️ Bulutların üstünde</div>
+                </div>
+            </div>
+
+
+            <button class="create-button" id="createStory">Hikayemi Oluştur</button>
+
+            <div class="story-result" id="storyResult">
+                <h3>🌟 Senin Hikayen</h3>
+                <div class="story-text" id="storyText"></div>
+            </div>
+        </div>
+    </div>
+<script src="icerikDetaylandir.js"></script>
 </body>
-
 </html>

@@ -34,7 +34,7 @@ body {
 /* === Üst Bar (Header) - Ortak Stil === */
 .main-header {
     width: 100%;
-    padding: 1.5rem 5%;
+    padding: 1.5rem 2%;
     border-bottom: 2px solid var(--header-border);
     background-size: 250px 40px; /* Desenin boyutu */
     background-repeat: repeat;
@@ -53,6 +53,11 @@ body {
     color: var(--logo-color);
 }
 
+.logo:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px); /* Yukarıya hafif hareket */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
 /* === Ana İçerik Alanı === */
 .content-container {
     flex-grow: 1;
