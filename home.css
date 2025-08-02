@@ -1,6 +1,6 @@
 /* === Genel ve Temel Ayarlar === */
 :root {
-    --primary-bg: #e0f0ff; /* Ana açık mavi arka plan */
+    --primary-bg: hsl(198, 72%, 59%); /* Ana açık mavi arka plan */
     --button-bg: #a9c7ff;  /* Buton mavisi */
     --button-text: #3b5a9a; /* Buton yazı rengi */
     --header-border: #d9d6fe; /* Üst bar çerçeve rengi */
@@ -31,12 +31,19 @@ body {
     width: 100%;
     padding: 1.5rem 5%; /* Kenarlardan boşluk */
     border-bottom: 2px solid var(--header-border);
+    background-color: hsl(199, 73%, 65%); /* Üst bar arka plan rengi */
+    /*arkaplan deseni */
+  
+    background-size: 250px 40px; /* Desenin boyutu */
+    background-repeat: repeat;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);
+    
 }
 
 .logo {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem; /* İkon ve yazı arası boşluk */
+    gap: 0.6rem; /* İkon ve yazı arası boşluk */
     font-weight: 600;
     font-size: 1.2rem;
     color: var(--logo-color);
@@ -46,6 +53,7 @@ body {
 .hero-section {
     flex-grow: 1; /* Header'dan sonra kalan tüm alanı kapla */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -54,18 +62,113 @@ body {
 }
 
 .hero-content {
+    margin-top: -8rem; /* İçeriği yukarı kaydır */
+    padding: 2rem;
     position: relative;
     z-index: 10; /* Yazıların görsellerin üzerinde kalmasını sağlar */
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
-    font-weight: 700;
+    font-weight: 800; /* Kalın başlık */
     margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+    line-height: 1.2; /* Başlık satır yüksekliği */ 
+    max-width: 800px; /* Başlık genişliğini sınırla */
+    margin-left: auto; /* Başlığı ortalamak için */
+    margin-right: auto; /* Başlığı ortalamak için */
+    padding: 0 1rem; /* Kenarlardan boşluk */
 }
 
 .hero-content p {
     font-size: 1.2rem;
     color: var(--text-light);
-    margin-bottom: 2rem;
+    margin-bottom: 6rem;
+}
+
+/* === Buton (CTA Button) === */
+.cta-button {
+    margin-top: 14rem !important; /* Butonun üst boşluğunu artır */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 0.9rem 2rem;
+    border-radius: 50px; /* Tam yuvarlak kenarlar */
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Hafif beyaz çerçeve */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px); /* Yukarıya hafif hareket */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* === Arka Plan Görselleri (Güneş ve Bulutlar) === */
+.background-elements > div {
+    position: absolute;
+    z-index: 1; /* İçeriğin arkasında kalır */
+    opacity: 0.8;
+}
+
+.sun {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+}
+
+.cloud {
+    opacity: 0.9;
+}
+
+.cloud svg {
+    width: 100%;
+    height: auto;
+    fill: #fdfdfd; /* Bulutların rengi */
+}
+
+/* Farklı bulutların pozisyonları ve boyutları */
+.cloud-1 { top: 10%; left: 15%; width: 150px; }
+.cloud-2 { top: 25%; right: 10%; width: 200px; }
+.cloud-3 { bottom: 15%; left: 20%; width: 120px; }
+.cloud-4 { bottom: 25%; right: 25%; width: 100px; }
+
+/* === Mobil ve Tablet İçin Responsive Ayarlar === */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem; /* Başlık fontunu küçült */
+    }
+
+    .hero-content p {
+        font-size: 1rem; /* Paragraf fontunu küçült */
+    }
+
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Bazı bulutları gizle veya küçült */
+    .sun { width: 200px; }
+    .cloud-1 { top: 5%; left: 5%; width: 120px; }
+    .cloud-2 { top: 15%; right: -5%; width: 150px; }
+    .cloud-3 { bottom: 10%; left: 10%; width: 90px; }
+    .cloud-4 { display: none; } /* Bir bulutu küçük ekranda gizle */
+}
+
+@media (max-width: 480px) {
+     .main-header {
+        padding: 1rem 5%;
+     }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
 }
