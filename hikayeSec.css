@@ -66,3 +66,56 @@ body {
     font-weight: 700;
     margin-bottom: 3rem;
 }
+
+/* === Kategori Izgarası (Grid) === */
+.category-grid {
+    display: grid;
+    /* Masaüstünde 3 sütunlu yapı */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; /* Kartlar arası boşluk */
+    width: 100%;
+    max-width: 800px;
+}
+
+/* === Kategori Kartı Stilleri === */
+.category-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 2rem 1rem;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* İkon ve yazı arası boşluk */
+    
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1.1rem;
+
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-8px); /* Üzerine gelince hafifçe yukarı kalkar */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.category-card .icon-container {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Kartların renklerini atayan sınıflar */
+.category-card.color-pink          { background-color: var(--cat-pink); }
+.category-card.color-light-blue    { background-color: var(--cat-light-blue); }
+.category-card.color-purple        { background-color: var(--cat-purple); }
+.category-card.color-yellow        { background-color: var(--cat-yellow); }
+.category-card.color-green         { background-color: var(--cat-green); }
+.category-card.color-cyan          { background-color: var(--cat-cyan); }
