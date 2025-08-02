@@ -14,3 +14,58 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Yatay kaydırmayı engelle */
+    position: relative;
+}
+
+/* === Üst Bar (Header) === */
+.main-header {
+    width: 100%;
+    padding: 1.5rem 5%; /* Kenarlardan boşluk */
+    border-bottom: 2px solid var(--header-border);
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* İkon ve yazı arası boşluk */
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--logo-color);
+}
+
+/* === Ana İçerik Alanı (Hero) === */
+.hero-section {
+    flex-grow: 1; /* Header'dan sonra kalan tüm alanı kapla */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative; /* Arka plan elemanları için */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10; /* Yazıların görsellerin üzerinde kalmasını sağlar */
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
