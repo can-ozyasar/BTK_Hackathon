@@ -1,0 +1,123 @@
+/* === Hikaye Oluşturma Sayfası Stilleri === */
+.content-container.story-creation-page {
+    justify-content: flex-start; /* İçeriği yukarıdan başlat */
+    gap: 2rem;
+}
+
+.creation-step {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0; /* Başlık ve kart arası boşluk */
+    margin-left: 1rem; /* Başlık ve kart arası boşluk */
+    margin-bottom: 1rem; /* Başlık ve kart arası boşluk */
+}
+
+.choice-card-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.choice-card-container .image-box {
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.choice-card-container .image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.choice-content {
+    width: 100%;
+    text-align: center;
+}
+
+.choice-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.option-card {
+    background-color: var(--cat-light-blue);
+    padding: 1rem;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.option-card .icon {
+    font-size: 1.5rem;
+}
+
+.option-card span {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* === Buton Stili === */
+.create-story-button {
+    background-color: #ff9f1c; /* Turuncu renk */
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    margin-top: 2rem;
+}
+
+.create-story-button:hover {
+    background-color: #e68a00;
+}
+
+/* === Responsive Tasarım === */
+@media (max-width: 650px) {
+    .choice-card-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .choice-content h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr; /* Mobil'de tek sütun */
+    }
+
+    .option-card {
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+}

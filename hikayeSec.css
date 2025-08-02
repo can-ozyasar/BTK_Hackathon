@@ -74,7 +74,13 @@ body {
     padding: 1rem 0.5rem;
     margin-bottom: 3rem;
 }
-
+.creation-step {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1rem; /* Başlık ve kart arası boşluk */
+    margin-left: 1rem; /* Başlık ve kart arası boşluk */
+}
 /* === Kategori Izgarası (Grid) === */
 .category-grid {
     display: grid;

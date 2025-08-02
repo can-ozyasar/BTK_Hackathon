@@ -146,6 +146,17 @@ body {
 .cloud-3 { bottom: 15%; left: 20%; width: 120px; }
 .cloud-4 { bottom: 25%; right: 25%; width: 100px; }
 
+
+
+.creation-step {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0; /* Başlık ve kart arası boşluk */
+    margin-left: 1rem; /* Başlık ve kart arası boşluk */
+    margin-bottom: 1rem; /* Başlık ve kart arası boşluk */
+
+}
 /* === Mobil ve Tablet İçin Responsive Ayarlar === */
 @media (max-width: 768px) {
     .hero-content h1 {
