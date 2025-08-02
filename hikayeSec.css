@@ -1,0 +1,32 @@
+/* === Genel ve Temel Ayarlar === */
+:root {
+    /* Renk Paleti */
+    --header-border: #d9d6fe;
+    --text-dark: #2c3e50;
+    --logo-color: #4338CA;
+    
+    /* Kategori Renkleri */
+    --cat-pink: #FCE7E9;
+    --cat-light-blue: #D6EEF9;
+    --cat-purple: #E8DFF5;
+    --cat-yellow: #FEF3B8;
+    --cat-green: #D5F5E3;
+    --cat-cyan: #D4F1F4;
+}
+
+/* Tüm kutu modelini daha sezgisel hale getirir */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Yumuşak arkaplan geçişi */
+    background: linear-gradient(135deg, #FFF1EB 0%, #FFFBEB 100%);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
