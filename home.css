@@ -41,12 +41,17 @@ body {
 }
 
 .logo {
+
+    border : 3px solid var(--header-border);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem; /* İkon ve yazı arası boşluk */
-    font-weight: 600;
+    gap: 0.5rem;
+    font-weight: 700;
     font-size: 1.2rem;
     color: var(--logo-color);
+   
 }
 
 /* === Ana İçerik Alanı (Hero) === */
