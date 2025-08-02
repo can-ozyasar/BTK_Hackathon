@@ -66,8 +66,12 @@ body {
 }
 
 .content-container h1 {
+    color: rgb(236, 241, 245);
+     border-style: solid;
+    border-radius: 10%;
     font-size: 2.5rem;
     font-weight: 700;
+    padding: 1rem 0.5rem;
     margin-bottom: 3rem;
 }
 
