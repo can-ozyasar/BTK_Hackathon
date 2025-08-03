@@ -41,7 +41,7 @@
         function animateAnimalRotation(animal) {
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;
-            const radius = Math.random() * 150 + 100; // 100 ile 250 arasında rastgele bir yarıçap
+            const radius = Math.random() * 190 + 290; // 100 ile 250 arasında rastgele bir yarıçap
             const speed = (Math.random() * 0.005) + 0.005; // 0.005 ile 0.01 arasında rastgele bir hız
             let angle = Math.random() * 2 * Math.PI; // Başlangıç açısı (radyan)
 

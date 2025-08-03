@@ -1,0 +1,78 @@
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .ai-loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+      color: white;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .ai-spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid rgba(255, 255, 255, 0.3);
+      border-top: 6px solid #ffd700;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+
+
+    
+/* === Hareketli Hayvanlar === */
+#animal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.moving-animal {
+    position: absolute;
+    font-size: 3rem;
+    will-change: transform;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    
+    /* Buraya ekle */
+    transition: transform 0.5s linear;
+}
+
+
+    .ai-loader-text {
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  

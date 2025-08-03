@@ -192,5 +192,65 @@ function checkIfComplete() {
 
 // Hikaye oluşturma fonksiyonu
 async function generateStory() {
-    // ... hikaye oluşturma API çağrısı ve sonuçları gösterme mantığı ...
+    window.location.href = 'loading.html'; // Yükleme ekranına yönlendir
 }
+
+
+
+
+
+// // icerikDetaylandir.js
+// // ... (Diğer kodlar)
+
+// // Yeni DOM elementi
+// const loadingScreen = document.getElementById('loading-screen');
+
+// // ... (fetchQuestions, renderQuestions vb. fonksiyonlar)
+
+// // Hikaye oluşturma fonksiyonu
+// async function generateStory() {
+//     // 1. Butona basılınca yükleme ekranını göster
+//     loadingScreen.classList.remove('hidden');
+
+//     const heroNameInput = document.querySelector('.hero-name-input');
+//     const heroName = heroNameInput ? heroNameInput.value.trim() : '';
+//     const selectedCategory = getSelectedCategory();
+
+//     const payload = {
+//         heroName: heroName,
+//         categoryId: selectedCategory.id,
+//         choices: selectedChoices
+//     };
+    
+//     try {
+//         const response = await fetch(`${API_BASE_URL}/api/stories/create`, {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify(payload)
+//         });
+
+//         if (!response.ok) {
+//             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+//         }
+
+//         const data = await response.json();
+        
+//         // 2. İşlem tamamlandığında yükleme ekranını gizle
+//         loadingScreen.classList.add('hidden');
+        
+//         if (DEBUG_MODE) console.log('Hikaye oluşturuldu:', data);
+        
+//         // Hikaye metnini göstermek için yeni bir sayfaya yönlendirme yapalım
+//         // Önce hikaye verisini LocalStorage'a kaydet
+//         localStorage.setItem('generatedStory', JSON.stringify(data.data));
+
+//         // 3. Yeni sayfaya yönlendir
+//         window.location.href = 'hikayeOku.html'; // Yönlendirilecek sayfanın adını buraya girin
+
+//     } catch (error) {
+//         // Hata durumunda da yükleme ekranını gizle
+//         loadingScreen.classList.add('hidden');
+//         console.error('Hikaye oluşturma hatası:', error);
+//         showError('Hikaye oluşturulurken bir sorun oluştu. Lütfen tekrar deneyin.');
+//     }
+// }
