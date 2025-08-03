@@ -54,6 +54,8 @@ body {
 .container {
     width: 100%;
     max-width: 80%;
+    position: center;
+    text-align: center;
     margin: 0 auto;
     background: white;
     border-radius: 20px;
@@ -270,6 +272,10 @@ body {
 
     .container {
         margin: 10px;
+        position: center;
+        text-align: center;
+        width: calc(100% - 20px);
+
     }
 }
 

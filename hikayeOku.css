@@ -1,0 +1,169 @@
+
+
+/* Genel Stil ve Vücut Ayarları */
+body {
+    font-family: 'Cormorant Garamond', serif; /* Tavsiye: Daha kitapvari bir font */
+    background: #e0eaf1;
+    justify-content: center;
+    align-items: center;
+width: 100%;
+    margin: 0;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+
+
+.story-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Kitap Konteyneri ve Kitap Sayfası Stilleri */
+.book-container {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    height: 450px; /* Sabit bir yükseklik vererek oranı koruruz */
+    perspective: 1500px; /* 3D perspektif */
+}
+
+.book {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d; /* Çocuk elemanlarının 3D uzayda kalmasını sağlar */
+    transition: transform 1s ease-in-out;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    backface-visibility: hidden; /* Sayfanın arkasının görünmesini engeller */
+    background-color: #fcfcfc; /* Tavsiye: Hafif krem rengi kağıt hissi */
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.1), -5px 5px 20px rgba(0,0,0,0.1); /* Gerçekçi gölge */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Daha canlı bir animasyon */
+}
+
+.page.is-active {
+    z-index: 100;
+}
+
+.page.is-flipped {
+    transform: rotateY(-180deg);
+    z-index: 10;
+}
+
+.page.is-turning {
+    box-shadow: 0 0 50px rgba(0,0,0,0.3); /* Tavsiye: Sayfa dönerken daha belirgin gölge */
+}
+
+.page img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    border-bottom: 2px solid rgba(0,0,0,0.1); /* Resim ve metin arasına hafif çizgi */
+}
+
+.story-text {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    height: 40%;
+    overflow-y: auto;
+}
+
+.cover-page h2, .cover-page p {
+    text-align: center;
+    margin: 0;
+}
+
+.cover-page .story-text {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Navigasyon Butonları */
+.navigation-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 1rem;
+}
+
+.nav-button {
+    background-color: #ff9f1c;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-button:hover {
+    background-color: #e68a00;
+    transform: scale(1.05);
+}
+
+.nav-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: scale(1);
+}
+
+.page-indicator {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #555;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+}
+
+
+.main-header {
+    width: 100%;
+    padding: 1.5rem 2%; /* Kenarlardan boşluk */
+    border-bottom: 2px solid var(--header-border);
+    background-color: hsl(199, 73%, 65%); /* Üst bar arka plan rengi */
+    /*arkaplan deseni */
+  
+    background-size: 250px 40px; /* Desenin boyutu */
+    background-repeat: repeat;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);
+    
+}
+
+.logo {
+
+    border : 3px solid var(--header-border);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--logo-color);
+   
+}
+.logo:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px); /* Yukarıya hafif hareket */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}

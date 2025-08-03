@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hikayeni Oku - Hayalperest Hikayeler</title>
+    <link rel="stylesheet" href="hikayeOku.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="main-header">
+        <a href="index.html">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 2L14.47 8.53L21.5 9.53L16.5 14.47L17.94 21.5L12 17.77L6.06 21.5L7.5 14.47L2.5 9.53L9.53 8.53L12 2Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span> logo</span>
+            </div>
+        </a>
+    </header>
+
+
+    <main class="story-container">
+        <div class="book-container">
+            <div class="book">
+                <div class="page cover-page is-active" id="cover">
+                    <img src="resimler/karakter.png" alt="Kitap Kapağı">
+                    <div class="story-text">
+                        <h2>Hayalperest Hikayeler</h2>
+                        <p>Hikayeni okumaya başlamak için tıkla!</p>
+                    </div>
+                </div>
+
+                <div class="page" id="page-1">
+                    <img src="resimler/karakter2.png" alt="Hikaye Sayfası 1">
+                    <div class="story-text">
+                        <p>Bir zamanlar, çok uzak bir ülkede, neşeli bir kahraman yaşarmış. Küçük şövalye cesur kalbiyle
+                            tanınırmış ve her sabah güneşle birlikte yeni maceralara atılırmış.</p>
+                    </div>
+                </div>
+
+                <div class="page" id="page-2">
+                    <img src="resimler/mekan.jpg" alt="Hikaye Sayfası 2">
+                    <div class="story-text">
+                        <p>En büyük hayali, kayıp yıldızı bulmak ve gökyüzüne geri götürmekmiş. Bu yüzden ormanın en
+                            derinliklerine doğru yola çıkmış. Yolculuğu boyunca dost canlısı hayvanlarla tanışmış.</p>
+                    </div>
+                </div>
+
+                <div class="page" id="page-3">
+                    <img src="resimler/karakter.png" alt="Hikaye Sayfası 3">
+                    <div class="story-text">
+                        <p>Yolun sonunda, yıldızı bir mağaranın içinde bulmuş. Yıldız, ona cesaretinden dolayı teşekkür
+                            etmiş ve tekrar gökyüzüne dönmüş. Kahramanımız da köyüne büyük bir neşe ve dostlukla geri
+                            dönmüş.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-controls">
+            <button id="prevBtn" class="nav-button" disabled>Önceki</button>
+            <span id="pageNumber" class="page-indicator">Kapak</span>
+            <button id="nextBtn" class="nav-button">Başla</button>
+        </div>
+
+    </main>
+    <script src="hikayeOku.js"></script>
+</body>
+
+</html>
