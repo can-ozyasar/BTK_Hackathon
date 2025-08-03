@@ -1,9 +1,11 @@
 * {
+    
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 :root {
+     
     /* Renk Paleti */
     --header-border: #d9d6fe;
     --text-dark: #2c3e50;
@@ -52,6 +54,7 @@ body {
 
 
 .container {
+   
     width: 100%;
     max-width: 70%;
     position: center;
@@ -62,6 +65,7 @@ body {
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     animation: slideUp 0.6s ease-out;
+    margin-top: 0.5rem; 
 }
 
 @keyframes slideUp {
@@ -77,6 +81,7 @@ body {
 }
 
 .header {
+   
     background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
     padding: 30px 20px;
     text-align: center;
@@ -285,11 +290,11 @@ body {
     }
 
     .container {
-        margin: 10px;
         position: center;
         text-align: center;
-        width: calc(100% - 20px);
+        max-width: 100%;
 
     }
 }
+
 
