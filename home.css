@@ -1,7 +1,3 @@
-/* === Genel ve Temel Ayarlar === */
-* { outline: 1px solid red; }
-
-
 
 :root {
     --primary-bg: hsl(198, 72%, 59%); /* Ana açık mavi arka plan */
@@ -189,8 +185,8 @@ body {
     .sun { width: 200px; }
     .cloud-1 { top: 4%; left: 5%; width: 120px; }
     .cloud-2 { top: 25%; right: 1%; width: 150px; }
-    .cloud-3 { bottom: 10%; left: 19%; width: 105px; }
-    .cloud-4 { display: none; } /* Bir bulutu küçük ekranda gizle */
+    .cloud-3 { bottom: 15%; left: 12%; width: 105px; }
+    .cloud-4 {bottom: 1%; left: 15rem; width: 105px; } /* Bir bulutu küçük ekranda gizle */
 }
 
 @media (max-width: 480px) {

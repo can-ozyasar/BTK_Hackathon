@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < 15; i++) {
         createAnimal();
     }
+    loadCategories();
 });
 
 // ===== API ENTEGRASYON KODU =====
@@ -475,15 +476,28 @@ function renderCategories(categories) {
 }
 
 // Ana yükleme fonksiyonu
+// Ana yükleme fonksiyonu (DÜZELTİLMİŞ VERSİYON)
 async function loadCategories() {
     showLoading();
     
     try {
-        const categories = await fetchCategories();
-        renderCategories(categories);
-        if (DEBUG_MODE) console.log('🎉 Kategoriler API\'den başarıyla yüklendi');
+        // Önce localStorage'dan veriyi çekmeye çalış
+        const cachedCategories = localStorage.getItem('cachedCategories');
+        
+        if (cachedCategories) {
+            // Eğer veri varsa, onu kullan
+            const categories = JSON.parse(cachedCategories);
+            if (DEBUG_MODE) console.log('✅ Kategoriler localStorage\'dan başarıyla yüklendi.');
+            renderCategories(categories);
+        } else {
+            // Eğer localStorage boşsa, API'den yeni veriyi çek
+            const categories = await fetchCategories();
+            renderCategories(categories);
+            if (DEBUG_MODE) console.log('🎉 Kategoriler API\'den başarıyla yüklendi.');
+        }
+
     } catch (error) {
-        if (DEBUG_MODE) console.log('🔄 API başarısız, varsayılan kategoriler kullanılıyor');
+        if (DEBUG_MODE) console.error('❌ Veri yüklenirken bir hata oluştu. Varsayılan kategoriler kullanılıyor.');
         renderCategories(defaultCategories);
     }
 }
