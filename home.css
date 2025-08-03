@@ -1,4 +1,8 @@
 /* === Genel ve Temel Ayarlar === */
+* { outline: 1px solid red; }
+
+
+
 :root {
     --primary-bg: hsl(198, 72%, 59%); /* Ana açık mavi arka plan */
     --button-bg: #a9c7ff;  /* Buton mavisi */
@@ -10,25 +14,28 @@
 }
 /* Tüm kutu modelini daha sezgisel hale getirir */
 *, *::before, *::after {
+    
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 body {
+    width: 100%;
     font-family: 'Poppins', sans-serif;
     background-color: var(--primary-bg);
     color: var(--text-dark);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* Yatay kaydırmayı engelle */
     position: relative;
+    overflow-x: hidden; /* Yatay kaydırmayı engelle */
+
 }
 
 /* === Üst Bar (Header) === */
 .main-header {
-    width: 100%;
+    width: calc(100%-4%);
     padding: 1.5rem 2%; /* Kenarlardan boşluk */
     border-bottom: 2px solid var(--header-border);
     background-color: hsl(199, 73%, 65%); /* Üst bar arka plan rengi */
@@ -166,6 +173,7 @@ body {
 @media (max-width: 768px) {
     .hero-content h1 {
         font-size: 2.5rem; /* Başlık fontunu küçült */
+        margin-top: 2rem;
     }
 
     .hero-content p {
@@ -179,9 +187,9 @@ body {
 
     /* Bazı bulutları gizle veya küçült */
     .sun { width: 200px; }
-    .cloud-1 { top: 5%; left: 5%; width: 120px; }
-    .cloud-2 { top: 15%; right: -5%; width: 150px; }
-    .cloud-3 { bottom: 10%; left: 10%; width: 90px; }
+    .cloud-1 { top: 4%; left: 5%; width: 120px; }
+    .cloud-2 { top: 25%; right: 1%; width: 150px; }
+    .cloud-3 { bottom: 10%; left: 19%; width: 105px; }
     .cloud-4 { display: none; } /* Bir bulutu küçük ekranda gizle */
 }
 
