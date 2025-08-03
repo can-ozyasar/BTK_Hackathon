@@ -90,13 +90,14 @@ body {
 }
 
 .header p {
-    font-size: 1.1em;
+    font-size: 1.2em;
     opacity: 0.9;
+    text-align: center ;
 }
 
 .name-input-section {
     padding: 30px 20px;
-    background: #f8f9ff;
+    background: #3950d4;
     text-align: center;
     border-bottom: 2px solid #e0e6ff;
 }
@@ -121,11 +122,12 @@ body {
 
 .name-input:focus {
     border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    transform: scale(1.02);
+    box-shadow: 0 0 0 5px rgba(102, 126, 234, 0.1);
+    transform: scale(1.03);
 }
 
 .content {
+    padding-top: 3rem;
     padding: 30px 20px;
 }
 
@@ -133,7 +135,7 @@ body {
     margin-bottom: 40px;
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.5s ease;
+    transition: all 0.4s ease;
 }
 
 .question.visible {
@@ -158,7 +160,7 @@ body {
 .question h3 {
     text-align: center;
     margin-bottom: 20px;
-    color: #2d3748;
+    color: #2d4832;
     font-size: 1.3em;
 }
 
@@ -169,6 +171,8 @@ body {
 }
 
 .option {
+        width:fit-content ;
+
     padding: 15px 20px;
     border: 2px solid #e2e8f0;
     border-radius: 12px;
