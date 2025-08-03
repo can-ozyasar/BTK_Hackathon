@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
     const animalContainer = document.getElementById('animal-container');
     const animals = ['🫏','🐄','🐑','🐱', '🐶', '🦁', '🐼', '🦊', '🦝', '🐹','🦄','🐷','🐪','🐘','🦓'];
 
@@ -55,82 +56,87 @@ const DEBUG_MODE = true;
 
 // Gelişmiş kategori konfigürasyonu - herhangi bir kategori için uyumlu
 const categoryConfig = {
-    // === Hayvanlar/Canlılar Kategorisi ===
+  // === Hayvanlar/Canlılar ===
     'hayvanlar': { color: 'color-pink', icon: 'cat' },
     'hayvan': { color: 'color-pink', icon: 'cat' },
-    'animals': { color: 'color-pink', icon: 'cat' },
-    'pets': { color: 'color-pink', icon: 'cat' },
     'canlılar': { color: 'color-pink', icon: 'cat' },
-    'wildlife': { color: 'color-pink', icon: 'cat' },
+    'hayvan dostları': { color: 'color-pink', icon: 'cat' },
+    'sevimli hayvanlar': { color: 'color-pink', icon: 'cat' },
+    'orman hayvanları': { color: 'color-pink', icon: 'cat' },
+    'çiftlik hayvanları': { color: 'color-pink', icon: 'cat' },
     
-    // === Uzay/Bilim Kategorisi ===
+    // === Uzay/Bilim ===
     'uzay': { color: 'color-light-blue', icon: 'rocket' },
-    'space': { color: 'color-light-blue', icon: 'rocket' },
+    'gezegen': { color: 'color-light-blue', icon: 'rocket' },
     'astronot': { color: 'color-light-blue', icon: 'rocket' },
     'bilim': { color: 'color-light-blue', icon: 'rocket' },
-    'science': { color: 'color-light-blue', icon: 'rocket' },
+    'keşif': { color: 'color-light-blue', icon: 'rocket' },
     'teknoloji': { color: 'color-light-blue', icon: 'rocket' },
-    'technology': { color: 'color-light-blue', icon: 'rocket' },
     'robot': { color: 'color-light-blue', icon: 'rocket' },
-    'future': { color: 'color-light-blue', icon: 'rocket' },
     'gelecek': { color: 'color-light-blue', icon: 'rocket' },
+    'uzay macerası': { color: 'color-light-blue', icon: 'rocket' },
     
-    // === Sihir/Fantastik Kategorisi ===
+    // === Sihir/Masal ===
     'sihir': { color: 'color-purple', icon: 'wand' },
-    'magic': { color: 'color-purple', icon: 'wand' },
-    'büyü': { color: 'color-purple', icon: 'wand' },
-    'fantasy': { color: 'color-purple', icon: 'wand' },
-    'fantastik': { color: 'color-purple', icon: 'wand' },
-    'fairy': { color: 'color-purple', icon: 'wand' },
+    'masal': { color: 'color-purple', icon: 'wand' },
     'peri': { color: 'color-purple', icon: 'wand' },
-    'mystical': { color: 'color-purple', icon: 'wand' },
-    'mistik': { color: 'color-purple', icon: 'wand' },
+    'büyü': { color: 'color-purple', icon: 'wand' },
+    'prenses': { color: 'color-purple', icon: 'wand' },
+    'prens': { color: 'color-purple', icon: 'wand' },
+    'ejderha': { color: 'color-purple', icon: 'wand' },
+    'şato': { color: 'color-purple', icon: 'wand' },
+    'krallık': { color: 'color-purple', icon: 'wand' },
+    'fantastik': { color: 'color-purple', icon: 'wand' },
+    'masallar': { color: 'color-purple', icon: 'wand' },
     
-    // === Macera/Aksiyon Kategorisi ===
+    // === Macera/Aksiyon ===
     'macera': { color: 'color-yellow', icon: 'swords' },
-    'adventure': { color: 'color-yellow', icon: 'swords' },
-    'serüven': { color: 'color-yellow', icon: 'swords' },
-    'action': { color: 'color-yellow', icon: 'swords' },
-    'aksiyon': { color: 'color-yellow', icon: 'swords' },
-    'treasure': { color: 'color-yellow', icon: 'swords' },
+    'kahraman': { color: 'color-yellow', icon: 'swords' },
+    'cesur': { color: 'color-yellow', icon: 'swords' },
     'hazine': { color: 'color-yellow', icon: 'swords' },
-    'quest': { color: 'color-yellow', icon: 'swords' },
-    'explorer': { color: 'color-yellow', icon: 'swords' },
-    'keşif': { color: 'color-yellow', icon: 'swords' },
+    'korsan': { color: 'color-yellow', icon: 'swords' },
+    'yolculuk': { color: 'color-yellow', icon: 'swords' },
+    'serüven': { color: 'color-yellow', icon: 'swords' },
+    'gizli ada': { color: 'color-yellow', icon: 'swords' },
+    'hazine avı': { color: 'color-yellow', icon: 'swords' },
+    'maceracı': { color: 'color-yellow', icon: 'swords' },
     
-    // === Arkadaşlık/İlişkiler Kategorisi ===
+    // === Arkadaşlık/Dostluk ===
     'arkadaşlık': { color: 'color-green', icon: 'handshake' },
     'arkadaş': { color: 'color-green', icon: 'handshake' },
-    'friendship': { color: 'color-green', icon: 'handshake' },
-    'family': { color: 'color-green', icon: 'handshake' },
-    'aile': { color: 'color-green', icon: 'handshake' },
-    'love': { color: 'color-green', icon: 'handshake' },
+    'dostluk': { color: 'color-green', icon: 'handshake' },
     'sevgi': { color: 'color-green', icon: 'handshake' },
-    'relationship': { color: 'color-green', icon: 'handshake' },
-    'ilişki': { color: 'color-green', icon: 'handshake' },
-    'social': { color: 'color-green', icon: 'handshake' },
+    'iyilik': { color: 'color-green', icon: 'handshake' },
+    'yardım': { color: 'color-green', icon: 'handshake' },
+    'paylaşmak': { color: 'color-green', icon: 'handshake' },
+    'aile': { color: 'color-green', icon: 'handshake' },
+    'kardeş': { color: 'color-green', icon: 'handshake' },
+    'birlikte': { color: 'color-green', icon: 'handshake' },
+    'dostlar': { color: 'color-green', icon: 'handshake' },
     
-    // === Doğa/Çevre Kategorisi ===
+    // === Doğa/Çevre ===
     'doğa': { color: 'color-cyan', icon: 'tree-palm' },
-    'nature': { color: 'color-cyan', icon: 'tree-palm' },
     'orman': { color: 'color-cyan', icon: 'tree-palm' },
-    'forest': { color: 'color-cyan', icon: 'tree-palm' },
-    'environment': { color: 'color-cyan', icon: 'tree-palm' },
-    'çevre': { color: 'color-cyan', icon: 'tree-palm' },
-    'ocean': { color: 'color-cyan', icon: 'tree-palm' },
+    'ağaç': { color: 'color-cyan', icon: 'tree-palm' },
+    'çiçek': { color: 'color-cyan', icon: 'tree-palm' },
+    'bahçe': { color: 'color-cyan', icon: 'tree-palm' },
     'deniz': { color: 'color-cyan', icon: 'tree-palm' },
-    'earth': { color: 'color-cyan', icon: 'tree-palm' },
-    'dünya': { color: 'color-cyan', icon: 'tree-palm' }
+    'nehir': { color: 'color-cyan', icon: 'tree-palm' },
+    'göl': { color: 'color-cyan', icon: 'tree-palm' },
+    'dağ': { color: 'color-cyan', icon: 'tree-palm' },
+    'çevre': { color: 'color-cyan', icon: 'tree-palm' },
+    'yeşil dünya': { color: 'color-cyan', icon: 'tree-palm' },
+    'mevsimler': { color: 'color-cyan', icon: 'tree-palm' }
 };
 
 // Kategori türü tespiti için anahtar kelimeler
 const categoryKeywords = {
-    'color-pink': ['hayvan', 'animal', 'pet', 'canlı', 'kedi', 'köpek', 'kuş', 'balık'],
-    'color-light-blue': ['uzay', 'space', 'bilim', 'science', 'teknoloji', 'technology', 'robot', 'gelecek', 'future'],
-    'color-purple': ['sihir', 'magic', 'büyü', 'fantasy', 'fantastik', 'peri', 'fairy', 'mistik'],
-    'color-yellow': ['macera', 'adventure', 'aksiyon', 'action', 'hazine', 'treasure', 'keşif', 'explorer'],
-    'color-green': ['arkadaş', 'friend', 'aile', 'family', 'sevgi', 'love', 'ilişki', 'social'],
-    'color-cyan': ['doğa', 'nature', 'orman', 'forest', 'çevre', 'environment', 'deniz', 'ocean']
+   'color-pink': ['hayvan', 'kedi', 'köpek', 'kuş', 'balık', 'tavşan', 'ayı', 'sevimli', 'yavru', 'patili'],
+    'color-light-blue': ['uzay', 'gezegen', 'yıldız', 'roket', 'astronot', 'bilim', 'keşif', 'teknoloji', 'robot'],
+    'color-purple': ['sihir', 'masal', 'peri', 'büyü', 'prens', 'prenses', 'ejderha', 'şato', 'krallık', 'cadı'],
+    'color-yellow': ['macera', 'kahraman', 'cesur', 'hazine', 'korsan', 'yolculuk', 'serüven', 'gizli', 'harita'],
+    'color-green': ['arkadaş', 'dostluk', 'sevgi', 'iyilik', 'yardım', 'paylaşmak', 'aile', 'birlikte', 'mutlu'],
+    'color-cyan': ['doğa', 'orman', 'ağaç', 'çiçek', 'bahçe', 'deniz', 'nehir', 'yeşil', 'çevre', 'mevsim']
 };
 
 // Mevcut tasarımınızdaki ikonlar
