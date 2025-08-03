@@ -297,6 +297,9 @@ body {
         max-width: 100%;
 
     }
+    .options-container {
+        grid-template-columns: 1fr; /* Ekran boyutu küçüldüğünde seçenekleri tek sütuna indirir */
+    }
 }
 
 
