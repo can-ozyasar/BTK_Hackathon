@@ -9,24 +9,26 @@ body {
     align-items: center;
     width: 100%;
     margin: 0;
-    padding: 2rem;
     overflow: hidden;
 }
 
 
 
 .story-container {
+    margin-left: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    max-width: 800px;
-    width: 100%;
+    width: 80%;
+    margin-top: 3rem;
 }
 
 /* Kitap Konteyneri ve Kitap Sayfası Stilleri */
 .book-container {
+    
     position: relative;
+    text-align: center ;
     width: 100%;
     max-width: 650px;
     height: 450px; /* Sabit bir yükseklik vererek oranı koruruz */
