@@ -136,7 +136,6 @@ function setupEventListeners() {
             this.classList.add('selected');
             selectedChoices[questionId] = choice;
 
-            // Sonraki soruyu göster
             showNextQuestion();
             checkIfComplete();
         });
@@ -145,7 +144,11 @@ function setupEventListeners() {
     const heroNameInput = document.querySelector('.hero-name-input');
     if (heroNameInput) {
         heroNameInput.addEventListener('input', function() {
-            // Hero name inputa değer girildiğinde bir sonraki soruyu göster
+            // İsim bilgisi her değiştiğinde `selectedChoices`'a kaydedilir.
+            const questionDiv = this.closest('.question');
+            const questionId = questionDiv.id;
+            selectedChoices[questionId] = this.value.trim();
+
             if (this.value.trim() !== '') {
                 showNextQuestion();
             }
@@ -164,7 +167,6 @@ function setupEventListeners() {
 
 // Bir sonraki soruyu göstermek için yeni fonksiyon
 function showNextQuestion() {
-    // Soru sayısını kontrol et
     if (currentQuestionIndex < totalQuestions - 1) {
         const nextQuestion = document.getElementById(`question${currentQuestionIndex + 2}`);
         if (nextQuestion) {
@@ -179,11 +181,9 @@ function showNextQuestion() {
 
 // Form tamamlanma kontrolü
 function checkIfComplete() {
-    const heroNameInput = document.querySelector('.hero-name-input');
-    const isNameEntered = heroNameInput ? heroNameInput.value.trim() !== '' : false;
-    const answeredCount = Object.keys(selectedChoices).length + (isNameEntered ? 1 : 0);
-    
-    if (answeredCount === totalQuestions) {
+    // Toplam soru sayısı kadar cevap gelmiş mi kontrol et.
+    // Her bir sorunun bir cevabı olmalı, hem metin hem de seçim soruları dahil.
+    if (Object.keys(selectedChoices).length === totalQuestions) {
         createButton.classList.add('enabled');
     } else {
         createButton.classList.remove('enabled');
@@ -192,65 +192,22 @@ function checkIfComplete() {
 
 // Hikaye oluşturma fonksiyonu
 async function generateStory() {
-    window.location.href = 'loading.html'; // Yükleme ekranına yönlendir
-}
-
-
-
-
-
-// // icerikDetaylandir.js
-// // ... (Diğer kodlar)
-
-// // Yeni DOM elementi
-// const loadingScreen = document.getElementById('loading-screen');
-
-// // ... (fetchQuestions, renderQuestions vb. fonksiyonlar)
-
-// // Hikaye oluşturma fonksiyonu
-// async function generateStory() {
-//     // 1. Butona basılınca yükleme ekranını göster
-//     loadingScreen.classList.remove('hidden');
-
-//     const heroNameInput = document.querySelector('.hero-name-input');
-//     const heroName = heroNameInput ? heroNameInput.value.trim() : '';
-//     const selectedCategory = getSelectedCategory();
-
-//     const payload = {
-//         heroName: heroName,
-//         categoryId: selectedCategory.id,
-//         choices: selectedChoices
-//     };
+    // Tüm cevapları ve isim bilgisini tek bir nesnede toplayın
+    const finalAnswers = {};
+    const heroNameInput = document.querySelector('.hero-name-input');
     
-//     try {
-//         const response = await fetch(`${API_BASE_URL}/api/stories/create`, {
-//             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify(payload)
-//         });
+    // API'nin beklediği formata göre cevapları yeniden düzenle
+    // Örneğin, "question1" anahtarı yerine "heroName" gibi bir anahtar kullanabiliriz
+    for (const key in selectedChoices) {
+        // Burada, her bir questionId'ye karşılık gelen input veya seçenek değerini alıp API'nin beklediği formata dönüştürmeniz gerekir.
+        // Bu örnek için, sadece anahtar-değer çiftlerini saklıyoruz.
+        finalAnswers[key] = selectedChoices[key];
+    }
 
-//         if (!response.ok) {
-//             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-//         }
+    // Cevapları ve isim bilgisini bir JSON nesnesi olarak localStorage'a kaydedin
+    localStorage.setItem('storyCreationAnswers', JSON.stringify(finalAnswers));
+    if (DEBUG_MODE) console.log('✅ Cevaplar localStorage\'a kaydedildi:', finalAnswers);
 
-//         const data = await response.json();
-        
-//         // 2. İşlem tamamlandığında yükleme ekranını gizle
-//         loadingScreen.classList.add('hidden');
-        
-//         if (DEBUG_MODE) console.log('Hikaye oluşturuldu:', data);
-        
-//         // Hikaye metnini göstermek için yeni bir sayfaya yönlendirme yapalım
-//         // Önce hikaye verisini LocalStorage'a kaydet
-//         localStorage.setItem('generatedStory', JSON.stringify(data.data));
-
-//         // 3. Yeni sayfaya yönlendir
-//         window.location.href = 'hikayeOku.html'; // Yönlendirilecek sayfanın adını buraya girin
-
-//     } catch (error) {
-//         // Hata durumunda da yükleme ekranını gizle
-//         loadingScreen.classList.add('hidden');
-//         console.error('Hikaye oluşturma hatası:', error);
-//         showError('Hikaye oluşturulurken bir sorun oluştu. Lütfen tekrar deneyin.');
-//     }
-// }
+    // Loading ekranına yönlendir
+    window.location.href = 'loading.html';
+}

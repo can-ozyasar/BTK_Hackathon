@@ -208,14 +208,14 @@ const iconTemplates = {
 };
 
 // Varsayılan kategoriler (fallback)
-const defaultCategories = [
-    { id: 1, name: 'Hayvanlar', slug: 'hayvanlar' },
-    { id: 2, name: 'Uzay', slug: 'uzay' },
-    { id: 3, name: 'Sihir', slug: 'sihir' },
-    { id: 4, name: 'Macera', slug: 'macera' },
-    { id: 5, name: 'Arkadaşlık', slug: 'arkadaşlık' },
-    { id: 6, name: 'Doğa', slug: 'doğa' }
-];
+// const defaultCategories = [
+//     { id: 1, name: 'Hayvanlar', slug: 'hayvanlar' },
+//     { id: 2, name: 'Uzay', slug: 'uzay' },
+//     { id: 3, name: 'Sihir', slug: 'sihir' },
+//     { id: 4, name: 'Macera', slug: 'macera' },
+//     { id: 5, name: 'Arkadaşlık', slug: 'arkadaşlık' },
+//     { id: 6, name: 'Doğa', slug: 'doğa' }
+// ];
 
 // Kategoriye uygun renk ve ikon stilini belirler
 function getCategoryStyle(category, index) {
@@ -315,7 +315,7 @@ function renderCategories(categories) {
 
     if (!categories || categories.length === 0) {
         if (DEBUG_MODE) console.log('❌ Kategoriler boş, default kategoriler kullanılacak');
-        categories = defaultCategories;
+       // categories = defaultCategories;
     }
 
     if (DEBUG_MODE) console.log('🎨 Kategoriler render ediliyor:', categories);
@@ -361,7 +361,7 @@ async function loadCategories() {
         renderCategories(categories);
     } catch (error) {
         if (DEBUG_MODE) console.error('❌ Veri yüklenirken bir hata oluştu. Varsayılan kategoriler kullanılıyor.');
-        renderCategories(defaultCategories);
+       // renderCategories(defaultCategories);
     }
 }
 
