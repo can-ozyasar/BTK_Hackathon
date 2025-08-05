@@ -56,9 +56,7 @@ body {
 
 .container {
 
-    width: 100%;
-    max-width: 70%;
-    position: center;
+    width: 90%;
     text-align: center;
     margin: 0 auto;
     background: white;
@@ -286,6 +284,7 @@ body {
 @media (max-width: 600px) {
     .options {
         grid-template-columns: 1fr;
+        
     }
 
     .header h1 {
@@ -293,8 +292,8 @@ body {
     }
 
     .container {
-        position: center;
         text-align: center;
+        max-width: 90%;
 
     }
 
@@ -302,5 +301,107 @@ body {
         grid-template-columns: 1fr;
         /* Ekran boyutu küçüldüğünde seçenekleri tek sütuna indirir */
 
+    }
+}
+
+/* CSS dosyanızın sonuna bu stilleri ekleyin */
+
+/* Soru görünürlük sorunlarını çözmek için */
+.question {
+    display: block !important;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    margin-bottom: 40px;
+    min-height: 200px; /* Minimum yükseklik garanti et */
+}
+
+.question.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Soru başlıkları için */
+.question h2 {
+    font-size: 1.5em !important;
+    color: #2d3748 !important;
+    margin-bottom: 2rem !important;
+    text-align: center !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Seçenekler için */
+.options-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 15px !important;
+    margin-bottom: 3rem !important;
+    visibility: visible !important;
+}
+
+.option {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 60px !important;
+    padding: 15px 20px !important;
+    border: 2px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    background: white !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-align: center !important;
+    font-weight: 500 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.option:hover {
+    border-color: #667eea !important;
+    background: #f7fafc !important;
+    transform: translateY(-2px) !important;
+}
+
+.option.selected {
+    background: #667eea !important;
+    color: white !important;
+    border-color: #667eea !important;
+}
+
+/* İsim input alanı için */
+.name-input {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+}
+
+/* Loading animasyonu */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+/* Mobil uyumluluk */
+@media (max-width: 600px) {
+    .options-container {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .question h2 {
+        font-size: 1.3em !important;
     }
 }

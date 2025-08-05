@@ -26,7 +26,7 @@ body {
     align-items: center;
     gap: 2rem;
     width: 80%;
-    margin-top: 3rem;
+    margin-top: 0.5rem;
 }
 
 /* Kitap Konteyneri ve Kitap Sayfası Stilleri */
@@ -36,7 +36,7 @@ body {
     text-align: center;
     width: 100%;
     max-width: 950px;
-    height: 500px;
+    height: 600px;
     perspective: 1500px;
 }
 
@@ -124,16 +124,15 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 400px;
-    margin-top: 1rem;
+    max-width: 500px;
+    margin-top: -1.5rem;
 }
-
 .nav-button {
     background-color: #ff9f1c;
     color: white;
     font-size: 1rem;
     font-weight: 600;
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 2.5rem;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -247,4 +246,18 @@ body {
         transform: rotateY(0deg);
         opacity: 1;
     }
+}
+
+@media (max-width: 480px) {
+
+
+.story-container {
+    margin-left: 3%;    
+    width: 94%;
+}
+.book-container {
+    
+    height: 650px;
+}
+     
 }
