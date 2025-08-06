@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    const animalContainer = document.getElementById('animal-container');
-    const animals = ['🫏','🐄','🐑','🐱', '🐶', '🦁', '🐼', '🦊', '🦝', '🐹','🦄','🐷','🐪','🐘','🦓'];
 
-    // Rastgele bir hayvan oluşturan fonksiyon
+    const animalContainer = document.getElementById('animal-container');
+    const animals = ['🫏', '🐄', '🐑', '🐱', '🐶', '🦁', '🐼', '🦊', '🦝', '🐹', '🦄', '🐷', '🐪', '🐘', '🦓'];
+
+
     function createAnimal() {
         const animal = document.createElement('div');
         animal.classList.add('moving-animal');
         animal.textContent = animals[Math.floor(Math.random() * animals.length)];
-        
+
         // Hayvanın başlangıç konumunu ayarla
-        animal.style.left = `${Math.random() * 650+190}vw`;
+        animal.style.left = `${Math.random() * 650 + 190}vw`;
         animal.style.top = `${Math.random() * 290}vh`;
 
         animalContainer.appendChild(animal);
@@ -36,21 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             animal.style.left = `${newX}px`;
             animal.style.top = `${newY}px`;
-            
+
             requestAnimationFrame(rotate);
         }
 
         rotate();
     }
 
-    // 15 adet hareketli hayvan ekle
+
     for (let i = 0; i < 15; i++) {
         createAnimal();
     }
     loadCategories();
 });
 
-// --- İkinci Sayfa (Hikaye Seçim) için optimize edilmiş kod ---
 
 const API_BASE_URL = 'https://btk-proje-backend.onrender.com';
 const DEBUG_MODE = true;
@@ -65,7 +64,7 @@ const categoryConfig = {
     'sevimli hayvanlar': { color: 'color-pink', icon: 'cat' },
     'orman hayvanları': { color: 'color-pink', icon: 'cat' },
     'çiftlik hayvanları': { color: 'color-pink', icon: 'cat' },
-    
+
     // === Uzay/Bilim ===
     'uzay': { color: 'color-light-blue', icon: 'rocket' },
     'gezegen': { color: 'color-light-blue', icon: 'rocket' },
@@ -76,7 +75,7 @@ const categoryConfig = {
     'robot': { color: 'color-light-blue', icon: 'rocket' },
     'gelecek': { color: 'color-light-blue', icon: 'rocket' },
     'uzay macerası': { color: 'color-light-blue', icon: 'rocket' },
-    
+
     // === Sihir/Masal ===
     'sihir': { color: 'color-purple', icon: 'wand' },
     'masal': { color: 'color-purple', icon: 'wand' },
@@ -89,7 +88,7 @@ const categoryConfig = {
     'krallık': { color: 'color-purple', icon: 'wand' },
     'fantastik': { color: 'color-purple', icon: 'wand' },
     'masallar': { color: 'color-purple', icon: 'wand' },
-    
+
     // === Macera/Aksiyon ===
     'macera': { color: 'color-yellow', icon: 'swords' },
     'kahraman': { color: 'color-yellow', icon: 'swords' },
@@ -101,7 +100,7 @@ const categoryConfig = {
     'gizli ada': { color: 'color-yellow', icon: 'swords' },
     'hazine avı': { color: 'color-yellow', icon: 'swords' },
     'maceracı': { color: 'color-yellow', icon: 'swords' },
-    
+
     // === Arkadaşlık/Dostluk ===
     'arkadaşlık': { color: 'color-green', icon: 'handshake' },
     'arkadaş': { color: 'color-green', icon: 'handshake' },
@@ -114,7 +113,7 @@ const categoryConfig = {
     'kardeş': { color: 'color-green', icon: 'handshake' },
     'birlikte': { color: 'color-green', icon: 'handshake' },
     'dostlar': { color: 'color-green', icon: 'handshake' },
-    
+
     // === Doğa/Çevre ===
     'doğa': { color: 'color-cyan', icon: 'tree-palm' },
     'orman': { color: 'color-cyan', icon: 'tree-palm' },
@@ -140,7 +139,6 @@ const categoryKeywords = {
     'color-cyan': ['doğa', 'orman', 'ağaç', 'çiçek', 'bahçe', 'deniz', 'nehir', 'yeşil', 'çevre', 'mevsim']
 };
 
-// Mevcut tasarımınızdaki ikonlar
 const iconTemplates = {
     'cat': `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"
@@ -150,7 +148,7 @@ const iconTemplates = {
              <path d="M16 14v.5" />
              <path d="M11.25 16.25h1.5L12 17l-.75-.75Z" />
              </svg>`,
-    
+
     'rocket': `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
                stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"
                class="lucide lucide-rocket-icon lucide-rocket">
@@ -159,7 +157,7 @@ const iconTemplates = {
                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
                </svg>`,
-    
+
     'wand': `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"
              class="lucide lucide-wand-icon lucide-wand">
@@ -173,7 +171,7 @@ const iconTemplates = {
              <path d="m3 21 9-9" />
              <path d="M12.2 6.2 11 5" />
              </svg>`,
-    
+
     'swords': `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
                stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"
                class="lucide lucide-swords-icon lucide-swords">
@@ -186,7 +184,7 @@ const iconTemplates = {
                <line x1="7" x2="4" y1="17" y2="20" />
                <line x1="3" x2="5" y1="19" y2="21" />
                </svg>`,
-    
+
     'handshake': `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"
                   class="lucide lucide-handshake-icon lucide-handshake">
@@ -196,7 +194,7 @@ const iconTemplates = {
                   <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
                   <path d="M3 4h8" />
                   </svg>`,
-    
+
     'tree-palm': `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"
                   class="lucide lucide-tree-palm-icon lucide-tree-palm">
@@ -221,7 +219,7 @@ const iconTemplates = {
 function getCategoryStyle(category, index) {
     const categoryName = (category.name || '').toLowerCase().trim();
     const categorySlug = (category.slug || '').toLowerCase().trim();
-    
+
     // 1. Direkt eşleşme
     let config = categoryConfig[categoryName] || categoryConfig[categorySlug];
     if (config) return config;
@@ -238,12 +236,12 @@ function getCategoryStyle(category, index) {
             }
         }
     }
-    
+
     // 3. Sıralı atama (fallback)
     const colors = ['color-pink', 'color-light-blue', 'color-purple', 'color-yellow', 'color-green', 'color-cyan'];
     const icons = ['cat', 'rocket', 'wand', 'swords', 'handshake', 'tree-palm'];
     const selectedIndex = index % 6;
-    
+
     return { color: colors[selectedIndex], icon: icons[selectedIndex] };
 }
 
@@ -251,7 +249,7 @@ function getCategoryStyle(category, index) {
 function createCategoryCard(category, index) {
     const style = getCategoryStyle(category, index);
     const icon = iconTemplates[style.icon] || iconTemplates['cat'];
-    
+
     return `
         <a href="icerikDetaylandir.html?categoryId=${category.id}&categoryName=${encodeURIComponent(category.name)}" 
            class="category-card ${style.color}" 
@@ -289,7 +287,7 @@ async function fetchCategoriesFromAPI() {
         if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         const data = await response.json();
         if (DEBUG_MODE) console.log('📦 API\'den gelen ham veri:', data);
-        
+
         // Farklı API response formatlarını destekle
         if (data.success && Array.isArray(data.data)) {
             return data.data;
@@ -315,7 +313,7 @@ function renderCategories(categories) {
 
     if (!categories || categories.length === 0) {
         if (DEBUG_MODE) console.log('❌ Kategoriler boş, default kategoriler kullanılacak');
-       // categories = defaultCategories;
+        // categories = defaultCategories;
     }
 
     if (DEBUG_MODE) console.log('🎨 Kategoriler render ediliyor:', categories);
@@ -324,11 +322,11 @@ function renderCategories(categories) {
 
     // Kategori seçimi için event listener
     document.querySelectorAll('.category-card').forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
             const categoryId = this.getAttribute('data-category-id');
             const categoryName = this.querySelector('span').textContent;
             if (DEBUG_MODE) console.log('🔄 Kategori seçildi:', { id: categoryId, name: categoryName });
-            
+
             try {
                 localStorage.setItem('selectedCategory', JSON.stringify({ id: categoryId, name: categoryName }));
                 localStorage.setItem('selectedCategoryId', categoryId);
@@ -344,7 +342,7 @@ function renderCategories(categories) {
 // Ana yükleme fonksiyonu
 async function loadCategories() {
     showLoading();
-    
+
     try {
         const cachedCategories = localStorage.getItem('cachedCategories');
         let categories;
@@ -361,7 +359,7 @@ async function loadCategories() {
         renderCategories(categories);
     } catch (error) {
         if (DEBUG_MODE) console.error('❌ Veri yüklenirken bir hata oluştu. Varsayılan kategoriler kullanılıyor.');
-       // renderCategories(defaultCategories);
+        // renderCategories(defaultCategories);
     }
 }
 

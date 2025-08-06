@@ -1,5 +1,4 @@
-// loading.js - Geliştirilmiş Kategori Eşleme Sistemi
-// ====== HİKAYE OLUŞTURMA VE YÜKLEME SAYFASI JS KODU ======
+
 
 const API_BASE_URL = 'https://btk-proje-backend.onrender.com';
 const DEBUG_MODE = true;
@@ -9,7 +8,6 @@ const AVAILABLE_CATEGORIES = ['aile', 'buyulu', 'dostluk', 'hayvanlar', 'macera'
 
 // Gelişmiş kategori eşleme sistemi
 const CATEGORY_MAPPING = {
-    // Ana kategoriler - tam eşleşme
     'aile': {
         priority: 10,
         keywords: ['aile', 'family', 'anne', 'baba', 'mom', 'dad', 'kardeş', 'sister', 'brother', 'akraba', 'relative', 'büyükanne', 'büyükbaba', 'teyze', 'amca', 'dayı', 'hala', 'çocuk', 'evlat', 'oğul', 'kız', 'ev', 'home', 'yuva'],
@@ -111,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
         createAnimal();
     }
 
-    // --- Gelişmiş kategori eşleme fonksiyonları ---
 
     /**
      * Metni normalize eden fonksiyon (küçük harf, Türkçe karakter dönüşümü)
@@ -132,19 +129,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function calculateSimilarity(str1, str2) {
         const s1 = normalizeText(str1);
         const s2 = normalizeText(str2);
-        
+
         if (s1 === s2) return 1.0;
         if (s1.length === 0 || s2.length === 0) return 0.0;
-        
+
         // Substring kontrolü
         if (s1.includes(s2) || s2.includes(s1)) {
             return 0.8;
         }
-        
+
         // Word-based similarity
         const words1 = s1.split(/\s+/);
         const words2 = s2.split(/\s+/);
-        
+
         let commonWords = 0;
         for (const word1 of words1) {
             for (const word2 of words2) {
@@ -153,11 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-        
+
         if (commonWords > 0) {
             return commonWords / Math.max(words1.length, words2.length);
         }
-        
+
         return 0.0;
     }
 
@@ -166,24 +163,24 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function findBestCategoryMatch(categoryName, storyContent = '') {
         if (DEBUG_MODE) console.log('🔍 Kategori eşleme başlatılıyor:', { categoryName, storyContent: storyContent.substring(0, 100) + '...' });
-        
+
         const normalizedCategory = normalizeText(categoryName);
         const normalizedContent = normalizeText(storyContent);
         const combinedText = `${normalizedCategory} ${normalizedContent}`;
-        
+
         // Önce tam eşleşme kontrol et
         if (AVAILABLE_CATEGORIES.includes(normalizedCategory)) {
             if (DEBUG_MODE) console.log('✅ Tam kategori eşleşmesi bulundu:', normalizedCategory);
             return normalizedCategory;
         }
-        
+
         // Kategori skorlarını hesapla
         const categoryScores = {};
-        
+
         for (const [category, config] of Object.entries(CATEGORY_MAPPING)) {
             let score = 0;
             let matchDetails = [];
-            
+
             // Anahtar kelime eşleşmelerini kontrol et
             for (const keyword of config.keywords) {
                 const keywordSimilarity = calculateSimilarity(keyword, normalizedCategory);
@@ -191,14 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     score += keywordSimilarity * config.priority;
                     matchDetails.push(`${keyword}(${keywordSimilarity.toFixed(2)})`);
                 }
-                
+
                 // Hikaye içeriğinde de ara
                 if (normalizedContent && normalizedContent.includes(normalizeText(keyword))) {
                     score += 0.5 * config.priority;
                     matchDetails.push(`content:${keyword}(0.5)`);
                 }
             }
-            
+
             // Direkt substring eşleşmesi
             for (const keyword of config.keywords) {
                 if (combinedText.includes(normalizeText(keyword))) {
@@ -206,29 +203,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     matchDetails.push(`substring:${keyword}(1.0)`);
                 }
             }
-            
+
             categoryScores[category] = { score, matchDetails };
-            
+
             if (DEBUG_MODE && score > 0) {
                 console.log(`📊 ${category}: ${score.toFixed(2)} [${matchDetails.join(', ')}]`);
             }
         }
-        
+
         // En yüksek skora sahip kategoriyi bul
         let bestCategory = 'diger';
         let highestScore = 0;
-        
+
         for (const [category, data] of Object.entries(categoryScores)) {
             if (data.score > highestScore) {
                 highestScore = data.score;
                 bestCategory = category;
             }
         }
-        
+
         // Eğer hiç eşleşme yoksa fallback kategorileri dene
         if (highestScore === 0) {
             if (DEBUG_MODE) console.log('⚠️ Direkt eşleşme bulunamadı, fallback kategoriler deneniyor...');
-            
+
             // En yakın string similarity'e göre kategoriye bak
             let bestSimilarity = 0;
             for (const availableCategory of AVAILABLE_CATEGORIES) {
@@ -239,11 +236,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-        
+
         if (DEBUG_MODE) {
             console.log(`✅ En iyi kategori eşleşmesi: ${bestCategory} (skor: ${highestScore.toFixed(2)})`);
         }
-        
+
         return bestCategory;
     }
 
@@ -252,14 +249,14 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function assignBackgroundImageToStory(storyData, categoryName, storyContent = '') {
         if (DEBUG_MODE) console.log('🖼️ Hikayeye kategoriye özel arkaplan resmi atanıyor...');
-        
+
         const selectedCategory = findBestCategoryMatch(categoryName, storyContent);
         const imagePath = `resimler/${selectedCategory}/background.jpg`;
-        
+
         storyData.backgroundImage = imagePath;
         storyData.detectedCategory = selectedCategory;
         storyData.originalCategory = categoryName;
-        
+
         if (DEBUG_MODE) {
             console.log('🎨 Arkaplan resmi atandı:', {
                 originalCategory: categoryName,
@@ -267,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 imagePath: imagePath
             });
         }
-        
+
         return storyData;
     }
 
@@ -304,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             if (DEBUG_MODE) console.log('📡 Hikaye oluşturma API\'sine POST isteği gönderiliyor...', storyCreationData);
-            
+
             const response = await fetch(`${API_BASE_URL}/api/stories/create`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -321,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('📦 API\'den Gelen Ham Hikaye Metni:', result.data.story);
             }
             if (DEBUG_MODE) console.log('📦 API Yanıtı (JSON):', result);
-            
+
             if (result && result.data && result.data.story) {
                 const storyId = `story-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
                 const sections = parseStoryText(result.data.story);
@@ -330,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (sections.length === 0) {
                     throw new Error('API\'den gelen hikaye metni düzgün bölümlere ayrılamadı. Lütfen metin formatını kontrol edin.');
                 }
-                
+
                 const storyTitle = `${categoryName} Hikayesi`;
                 const summary = sections[0] ? sections[0].text.trim() : storyTitle;
 
@@ -346,11 +343,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         answersCount: Object.keys(answers).length
                     }
                 };
-                
+
                 // Gelişmiş kategori eşleme ile arkaplan resmi ata
                 const finalStoryDataWithImage = assignBackgroundImageToStory(
-                    finalStoryData, 
-                    categoryName, 
+                    finalStoryData,
+                    categoryName,
                     result.data.story
                 );
 
@@ -372,11 +369,10 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function parseStoryText(storyText) {
         const sections = [];
-        
+
         // Metni farklı ayırıcılarla böl
         let pages = [];
-        
-        // Önce çift yeni satır ile dene
+
         if (storyText.includes('\n\n')) {
             pages = storyText.split('\n\n').map(page => page.trim()).filter(Boolean);
         }
@@ -388,12 +384,12 @@ document.addEventListener('DOMContentLoaded', () => {
         else {
             pages = storyText.split('. ').map(page => page.trim()).filter(Boolean);
         }
-        
+
         if (DEBUG_MODE) {
             console.log('📄 Hikaye bölümlere ayrıldı:', {
                 originalLength: storyText.length,
                 sectionsCount: pages.length,
-                sections: pages.map((p, i) => `${i+1}: ${p.substring(0, 50)}...`)
+                sections: pages.map((p, i) => `${i + 1}: ${p.substring(0, 50)}...`)
             });
         }
 
@@ -406,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
-        
+
         // Eğer hiç bölüm yoksa, tüm metni tek bölüm yap
         if (sections.length === 0) {
             sections.push({
@@ -415,16 +411,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 pageNumber: 1
             });
         }
-        
+
         return sections;
     }
-    
+
     async function startLoadingProcess() {
         const storyId = await createAndCacheStory();
 
         const minimumWaitTime = 3000; // Biraz daha uzun bekleme süresi
         const startTime = Date.now();
-        
+
         // Loading mesajı göster
         const loadingMessages = [
             'Hikaye oluşturuluyor...',
@@ -432,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Macera başlıyor...',
             'Son dokunuşlar yapılıyor...'
         ];
-        
+
         let messageIndex = 0;
         const messageInterval = setInterval(() => {
             const messageElement = document.querySelector('.loading-message');

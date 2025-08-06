@@ -1,16 +1,25 @@
-
 :root {
-    --primary-bg: hsl(198, 72%, 59%); /* Ana açık mavi arka plan */
-    --button-bg: #a9c7ff;  /* Buton mavisi */
-    --button-text: #3b5a9a; /* Buton yazı rengi */
-    --header-border: #d9d6fe; /* Üst bar çerçeve rengi */
-    --text-dark: #2c3e50;  /* Koyu metin rengi */
-    --text-light: #576c81; /* Açık metin rengi */
-    --logo-color: #4338CA; /* Logo rengi */
+    --primary-bg: hsl(198, 72%, 59%);
+    /* Ana açık mavi arka plan */
+    --button-bg: #a9c7ff;
+    /* Buton mavisi */
+    --button-text: #3b5a9a;
+    /* Buton yazı rengi */
+    --header-border: #d9d6fe;
+    /* Üst bar çerçeve rengi */
+    --text-dark: #2c3e50;
+    /* Koyu metin rengi */
+    --text-light: #576c81;
+    /* Açık metin rengi */
+    --logo-color: #4338CA;
+    /* Logo rengi */
 }
-/* Tüm kutu modelini daha sezgisel hale getirir */
-*, *::before, *::after {
-    
+
+
+*,
+*::before,
+*::after {
+
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -25,27 +34,26 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow-x: hidden; /* Yatay kaydırmayı engelle */
+    overflow-x: hidden;
 
 }
 
 /* === Üst Bar (Header) === */
 .main-header {
     width: calc(100%-4%);
-    padding: 1.5rem 2%; /* Kenarlardan boşluk */
+    padding: 1.5rem 2%;
     border-bottom: 2px solid var(--header-border);
-    background-color: hsl(199, 73%, 65%); /* Üst bar arka plan rengi */
-    /*arkaplan deseni */
-  
-    background-size: 250px 40px; /* Desenin boyutu */
+    background-color: hsl(199, 73%, 65%);
+
+    background-size: 250px 40px;
     background-repeat: repeat;
     background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);
-    
+
 }
 
 .logo {
 
-    border : 3px solid var(--header-border);
+    border: 3px solid var(--header-border);
     padding: 0.5rem 1rem;
     border-radius: 25px;
     display: inline-flex;
@@ -54,44 +62,45 @@ body {
     font-weight: 700;
     font-size: 1.2rem;
     color: var(--logo-color);
-   
+
 }
+
 .logo:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-1px); /* Yukarıya hafif hareket */
+    transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* === Ana İçerik Alanı (Hero) === */
 .hero-section {
-    flex-grow: 1; /* Header'dan sonra kalan tüm alanı kapla */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 2rem;
-    position: relative; /* Arka plan elemanları için */
+    position: relative;
 }
 
 .hero-content {
-    margin-top: -8rem; /* İçeriği yukarı kaydır */
+    margin-top: -8rem;
     padding: 2rem;
     position: relative;
-    z-index: 10; /* Yazıların görsellerin üzerinde kalmasını sağlar */
+    z-index: 10;
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
-    font-weight: 800; /* Kalın başlık */
+    font-weight: 800;
     margin-bottom: 0.5rem;
     color: var(--text-dark);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
-    line-height: 1.2; /* Başlık satır yüksekliği */ 
-    max-width: 800px; /* Başlık genişliğini sınırla */
-    margin-left: auto; /* Başlığı ortalamak için */
-    margin-right: auto; /* Başlığı ortalamak için */
-    padding: 0 1rem; /* Kenarlardan boşluk */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
 }
 
 .hero-content p {
@@ -102,31 +111,31 @@ body {
 
 /* === Buton (CTA Button) === */
 .cta-button {
-    margin-top: 14rem !important; /* Butonun üst boşluğunu artır */
+    margin-top: 14rem !important;
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
     background-color: var(--button-bg);
     color: var(--button-text);
     padding: 0.9rem 2rem;
-    border-radius: 50px; /* Tam yuvarlak kenarlar */
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
     font-size: 1rem;
-    border: 2px solid rgba(255, 255, 255, 0.5); /* Hafif beyaz çerçeve */
+    border: 2px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
 .cta-button:hover {
-    transform: translateY(-3px); /* Yukarıya hafif hareket */
+    transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* === Arka Plan Görselleri (Güneş ve Bulutlar) === */
-.background-elements > div {
+.background-elements>div {
     position: absolute;
-    z-index: 1; /* İçeriğin arkasında kalır */
+    z-index: 1;
     opacity: 0.8;
 }
 
@@ -145,14 +154,32 @@ body {
 .cloud svg {
     width: 100%;
     height: auto;
-    fill: #fdfdfd; /* Bulutların rengi */
+    fill: #fdfdfd;
 }
 
-/* Farklı bulutların pozisyonları ve boyutları */
-.cloud-1 { top: 10%; left: 15%; width: 150px; }
-.cloud-2 { top: 25%; right: 10%; width: 200px; }
-.cloud-3 { bottom: 15%; left: 20%; width: 120px; }
-.cloud-4 { bottom: 25%; right: 25%; width: 100px; }
+.cloud-1 {
+    top: 10%;
+    left: 15%;
+    width: 150px;
+}
+
+.cloud-2 {
+    top: 25%;
+    right: 10%;
+    width: 200px;
+}
+
+.cloud-3 {
+    bottom: 15%;
+    left: 20%;
+    width: 120px;
+}
+
+.cloud-4 {
+    bottom: 25%;
+    right: 25%;
+    width: 100px;
+}
 
 
 
@@ -160,20 +187,21 @@ body {
     color: #fff;
     font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 0; /* Başlık ve kart arası boşluk */
-    margin-left: 1rem; /* Başlık ve kart arası boşluk */
-    margin-bottom: 1rem; /* Başlık ve kart arası boşluk */
+    margin-bottom: 0;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
 
 }
+
 /* === Mobil ve Tablet İçin Responsive Ayarlar === */
 @media (max-width: 768px) {
     .hero-content h1 {
-        font-size: 2.5rem; /* Başlık fontunu küçült */
+        font-size: 2.5rem;
         margin-top: 2rem;
     }
 
     .hero-content p {
-        font-size: 1rem; /* Paragraf fontunu küçült */
+        font-size: 1rem;
     }
 
     .cta-button {
@@ -181,18 +209,41 @@ body {
         font-size: 0.9rem;
     }
 
-    /* Bazı bulutları gizle veya küçült */
-    .sun { width: 200px; }
-    .cloud-1 { top: 4%; left: 5%; width: 120px; }
-    .cloud-2 { top: 25%; right: 1%; width: 150px; }
-    .cloud-3 { bottom: 15%; left: 12%; width: 105px; }
-    .cloud-4 {bottom: 1%; left: 15rem; width: 105px; } /* Bir bulutu küçük ekranda gizle */
+
+    .sun {
+        width: 200px;
+    }
+
+    .cloud-1 {
+        top: 4%;
+        left: 5%;
+        width: 120px;
+    }
+
+    .cloud-2 {
+        top: 25%;
+        right: 1%;
+        width: 150px;
+    }
+
+    .cloud-3 {
+        bottom: 15%;
+        left: 12%;
+        width: 105px;
+    }
+
+    .cloud-4 {
+        bottom: 1%;
+        left: 15rem;
+        width: 105px;
+    }
 }
 
 @media (max-width: 480px) {
-     .main-header {
+    .main-header {
         padding: 1rem 5%;
-     }
+    }
+
     .hero-content h1 {
         font-size: 2rem;
     }

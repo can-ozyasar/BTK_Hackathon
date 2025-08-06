@@ -7,7 +7,7 @@
 
 :root {
 
-    /* Renk Paleti */
+
     --header-border: #d9d6fe;
     --text-dark: #2c3e50;
     --logo-color: #e9e7f9;
@@ -28,7 +28,7 @@ body {
     border: #5c9fe3 dotted 2px;
     border-bottom: 2px solid var(--header-border);
     background-size: 250px 40px;
-    /* Desenin boyutu */
+
     background-repeat: repeat;
     background-image: linear-gradient(135deg, rgba(158, 232, 250, 0.1) 15%, transparent 35%, transparent 50%, rgba(229, 199, 223, 0.1) 50%, rgba(225, 225, 229, 0.1) 75%, transparent 75%, transparent);
 }
@@ -49,7 +49,7 @@ body {
     color: #fff;
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-1px);
-    /* Yukarıya hafif hareket */
+
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -284,7 +284,7 @@ body {
 @media (max-width: 600px) {
     .options {
         grid-template-columns: 1fr;
-        
+
     }
 
     .header h1 {
@@ -299,21 +299,18 @@ body {
 
     .options-container {
         grid-template-columns: 1fr;
-        /* Ekran boyutu küçüldüğünde seçenekleri tek sütuna indirir */
 
     }
 }
 
-/* CSS dosyanızın sonuna bu stilleri ekleyin */
 
-/* Soru görünürlük sorunlarını çözmek için */
 .question {
     display: block !important;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.4s ease;
     margin-bottom: 40px;
-    min-height: 200px; /* Minimum yükseklik garanti et */
+    min-height: 200px;
 }
 
 .question.visible {
@@ -321,7 +318,7 @@ body {
     transform: translateY(0) !important;
 }
 
-/* Soru başlıkları için */
+
 .question h2 {
     font-size: 1.5em !important;
     color: #2d3748 !important;
@@ -331,7 +328,7 @@ body {
     visibility: visible !important;
 }
 
-/* Seçenekler için */
+
 .options-container {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
@@ -369,7 +366,7 @@ body {
     border-color: #667eea !important;
 }
 
-/* İsim input alanı için */
+
 .name-input {
     display: block !important;
     visibility: visible !important;
@@ -381,8 +378,13 @@ body {
 
 /* Loading animasyonu */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .spinner {
@@ -400,7 +402,7 @@ body {
     .options-container {
         grid-template-columns: 1fr !important;
     }
-    
+
     .question h2 {
         font-size: 1.3em !important;
     }

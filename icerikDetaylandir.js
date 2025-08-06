@@ -1,12 +1,11 @@
-// icerikDetaylandir.js
-// ====== HİKAYE OLUŞTURMA SAYFASI JS KODU (LOCALSTORAGE CACHE SİSTEMİ) ======
 
-// API URL'i ve Debug Modu
+
+
 const API_BASE_URL = 'https://btk-proje-backend.onrender.com';
 const DEBUG_MODE = true;
 
 // Cache ayarları
-const CACHE_EXPIRY_HOURS = 24; // 24 saat cache süresi
+const CACHE_EXPIRY_HOURS = 2; // 24 saat cache süresi
 const CACHE_KEY_PREFIX = 'questions_cache_';
 
 // State ve DOM Elementleri
@@ -47,27 +46,27 @@ function getCachedQuestions(categoryId) {
     try {
         const cacheKey = CACHE_KEY_PREFIX + categoryId;
         const cachedData = localStorage.getItem(cacheKey);
-        
+
         if (!cachedData) {
             if (DEBUG_MODE) console.log('📦 Cache\'de veri bulunamadı');
             return null;
         }
-        
+
         const parsedData = JSON.parse(cachedData);
         const now = new Date().getTime();
         const cacheTime = parsedData.timestamp;
         const expiryTime = CACHE_EXPIRY_HOURS * 60 * 60 * 1000; // milliseconds
-        
+
         // Cache süresi dolmuş mu kontrol et
         if (now - cacheTime > expiryTime) {
             if (DEBUG_MODE) console.log('⏰ Cache süresi dolmuş, siliniyor...');
             localStorage.removeItem(cacheKey);
             return null;
         }
-        
+
         if (DEBUG_MODE) console.log('✅ Cache\'den veri okundu:', parsedData.questions.length + ' soru');
         return parsedData.questions;
-        
+
     } catch (e) {
         if (DEBUG_MODE) console.error('Cache okuma hatası:', e);
         return null;
@@ -83,10 +82,10 @@ function setCachedQuestions(categoryId, questions) {
             questions: questions,
             categoryId: categoryId
         };
-        
+
         localStorage.setItem(cacheKey, JSON.stringify(cacheData));
         if (DEBUG_MODE) console.log('💾 Veriler cache\'e kaydedildi:', questions.length + ' soru');
-        
+
     } catch (e) {
         if (DEBUG_MODE) console.error('Cache yazma hatası:', e);
         // Cache yazamazsa devam et, kritik hata değil
@@ -99,7 +98,7 @@ function clearExpiredCache() {
         const keys = Object.keys(localStorage);
         const now = new Date().getTime();
         const expiryTime = CACHE_EXPIRY_HOURS * 60 * 60 * 1000;
-        
+
         keys.forEach(key => {
             if (key.startsWith(CACHE_KEY_PREFIX)) {
                 try {
@@ -124,21 +123,21 @@ async function loadQuestions(categoryId) {
     try {
         // Önce süresi dolmuş cache'leri temizle
         clearExpiredCache();
-        
+
         // Cache'den veri okumaya çalış
         const cachedQuestions = getCachedQuestions(categoryId);
-        
+
         if (cachedQuestions && cachedQuestions.length > 0) {
             // Cache'de veri var, direkt kullan
             if (DEBUG_MODE) console.log('🎯 Cache\'den sorular yüklendi');
             processQuestions(cachedQuestions);
             return;
         }
-        
+
         // Cache'de veri yok, API'den çek
         if (DEBUG_MODE) console.log('📡 Cache\'de veri yok, API\'den çekiliyor...');
         await fetchQuestionsFromAPI(categoryId);
-        
+
     } catch (error) {
         if (DEBUG_MODE) console.error('❌ Soru yükleme hatası:', error);
         showError('Sorular yüklenirken bir sorun oluştu. Sayfa yenileniyor...');
@@ -152,32 +151,32 @@ async function loadQuestions(categoryId) {
 async function fetchQuestionsFromAPI(categoryId) {
     try {
         if (DEBUG_MODE) console.log(`📡 Kategori ID'si ${categoryId} için API'den sorular çekiliyor...`);
-        
+
         const response = await fetch(`${API_BASE_URL}/api/stories/questions/${categoryId}`);
-        
+
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
-        
+
         const data = await response.json();
         if (DEBUG_MODE) console.log('📦 API\'den gelen sorular:', data);
-        
+
         const questions = data.data.questions || [];
-        
+
         if (questions.length === 0) {
             showError('Bu kategori için soru bulunamadı.');
             return;
         }
-        
+
         // API'den gelen veriyi cache'e kaydet
         setCachedQuestions(categoryId, questions);
-        
+
         // Soruları işle
         processQuestions(questions);
-        
+
     } catch (error) {
         if (DEBUG_MODE) console.error('⚠️ API hatası:', error);
-        
+
         // API hatası durumunda cache'de eski veri var mı kontrol et
         const oldCachedQuestions = getCachedQuestionsIgnoreExpiry(categoryId);
         if (oldCachedQuestions && oldCachedQuestions.length > 0) {
@@ -186,7 +185,7 @@ async function fetchQuestionsFromAPI(categoryId) {
             processQuestions(oldCachedQuestions);
             return;
         }
-        
+
         showError('Sorular yüklenirken bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin.');
         setTimeout(() => {
             window.location.reload();
@@ -199,12 +198,12 @@ function getCachedQuestionsIgnoreExpiry(categoryId) {
     try {
         const cacheKey = CACHE_KEY_PREFIX + categoryId;
         const cachedData = localStorage.getItem(cacheKey);
-        
+
         if (!cachedData) return null;
-        
+
         const parsedData = JSON.parse(cachedData);
         return parsedData.questions;
-        
+
     } catch (e) {
         if (DEBUG_MODE) console.error('Fallback cache okuma hatası:', e);
         return null;
@@ -221,12 +220,12 @@ function processQuestions(questions) {
 // Soruları sayfaya ekleyen fonksiyon
 function renderQuestions(questions) {
     questionContainer.innerHTML = '';
-    
+
     questions.forEach((question, index) => {
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('question');
         questionDiv.id = `question${index + 1}`;
-        
+
         // İlk soruyu görünür yap, diğerlerini gizle
         if (index === 0) {
             questionDiv.classList.add('visible');
@@ -234,12 +233,12 @@ function renderQuestions(questions) {
         } else {
             questionDiv.style.display = 'none';
         }
-        
+
         let questionContentHtml = '';
-        
+
         // Debug için soru bilgisini logla
         if (DEBUG_MODE) console.log(`🔍 Soru ${index + 1}:`, question);
-        
+
         if (question.type === 'textarea') {
             questionContentHtml = `
                 <h2 style="color: #2d3748; font-size: 1.5em; margin-bottom: 2rem; text-align: center;">
@@ -261,7 +260,7 @@ function renderQuestions(questions) {
                     ${option}
                 </div>
             `).join('');
-            
+
             questionContentHtml = `
                 <h2 style="color: #2d3748; font-size: 1.5em; margin-bottom: 2rem; text-align: center;">
                     ${question.question || 'Soru metni bulunamadı'}
@@ -282,10 +281,10 @@ function renderQuestions(questions) {
                 </p>
             `;
         }
-        
+
         questionDiv.innerHTML = questionContentHtml;
         questionContainer.appendChild(questionDiv);
-        
+
         // Debug için element kontrolü
         if (DEBUG_MODE) {
             console.log(`✅ Soru ${index + 1} DOM'a eklendi:`, questionDiv);
@@ -300,7 +299,7 @@ function renderQuestions(questions) {
     }, 100);
 }
 
-// Loading ekranı gösterimi
+
 function showLoading() {
     questionContainer.innerHTML = `
         <div class="loading-container" style="text-align: center; padding: 40px;">
@@ -310,7 +309,7 @@ function showLoading() {
     `;
 }
 
-// Hata mesajı gösterimi
+
 function showError(message) {
     questionContainer.innerHTML = `
         <div class="error-container" style="text-align: center; padding: 40px; color: #e53e3e;">
@@ -323,7 +322,7 @@ function showError(message) {
     if (DEBUG_MODE) console.error('Hata:', message);
 }
 
-// Uyarı mesajı gösterimi
+
 function showWarning(message) {
     const warningDiv = document.createElement('div');
     warningDiv.style.cssText = `
@@ -341,8 +340,8 @@ function showWarning(message) {
     `;
     warningDiv.textContent = message;
     document.body.appendChild(warningDiv);
-    
-    // 5 saniye sonra uyarıyı kaldır
+
+
     setTimeout(() => {
         if (warningDiv.parentNode) {
             warningDiv.parentNode.removeChild(warningDiv);
@@ -350,38 +349,38 @@ function showWarning(message) {
     }, 5000);
 }
 
-// Event listener'ları kuran fonksiyon
+
 function setupEventListeners() {
     const options = document.querySelectorAll('.option');
     if (DEBUG_MODE) console.log(`🎯 ${options.length} seçenek bulundu`);
-    
+
     options.forEach((option, index) => {
-        option.addEventListener('click', function(e) {
+        option.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             if (DEBUG_MODE) console.log('🖱️ Seçenek tıklandı:', this.textContent);
-            
+
             const questionDiv = this.closest('.question');
             const questionId = questionDiv.id;
             const choice = this.dataset.choice;
-            
-            // Diğer seçeneklerin seçimini kaldır
+
+
             questionDiv.querySelectorAll('.option').forEach(opt => {
                 opt.classList.remove('selected');
                 opt.style.background = 'white';
                 opt.style.color = '#333';
                 opt.style.borderColor = '#e2e8f0';
             });
-            
+
             // Bu seçeneği seçili yap
             this.classList.add('selected');
             this.style.background = '#667eea';
             this.style.color = 'white';
             this.style.borderColor = '#667eea';
-            
+
             selectedChoices[questionId] = choice;
-            
+
             if (DEBUG_MODE) console.log('✅ Seçim kaydedildi:', { questionId, choice });
 
             setTimeout(() => {
@@ -389,17 +388,17 @@ function setupEventListeners() {
                 checkIfComplete();
             }, 300);
         });
-        
+
         // Hover efektleri
-        option.addEventListener('mouseenter', function() {
+        option.addEventListener('mouseenter', function () {
             if (!this.classList.contains('selected')) {
                 this.style.borderColor = '#667eea';
                 this.style.background = '#f7fafc';
                 this.style.transform = 'translateY(-2px)';
             }
         });
-        
-        option.addEventListener('mouseleave', function() {
+
+        option.addEventListener('mouseleave', function () {
             if (!this.classList.contains('selected')) {
                 this.style.borderColor = '#e2e8f0';
                 this.style.background = 'white';
@@ -411,14 +410,14 @@ function setupEventListeners() {
     const heroNameInput = document.querySelector('.hero-name-input');
     if (heroNameInput) {
         if (DEBUG_MODE) console.log('📝 İsim input alanı bulundu');
-        
-        heroNameInput.addEventListener('input', function() {
+
+        heroNameInput.addEventListener('input', function () {
             const questionDiv = this.closest('.question');
             const questionId = questionDiv.id;
             const inputValue = this.value.trim();
-            
+
             selectedChoices[questionId] = inputValue;
-            
+
             if (DEBUG_MODE) console.log('✏️ İsim güncellendi:', { questionId, value: inputValue });
 
             if (inputValue !== '') {
@@ -428,22 +427,22 @@ function setupEventListeners() {
                 }, 500);
             }
         });
-        
+
         // Focus efektleri
-        heroNameInput.addEventListener('focus', function() {
+        heroNameInput.addEventListener('focus', function () {
             this.style.borderColor = '#667eea';
             this.style.boxShadow = '0 0 0 5px rgba(102, 126, 234, 0.1)';
             this.style.transform = 'scale(1.03)';
         });
-        
-        heroNameInput.addEventListener('blur', function() {
+
+        heroNameInput.addEventListener('blur', function () {
             this.style.borderColor = '#e2e8f0';
             this.style.boxShadow = 'none';
             this.style.transform = 'scale(1)';
         });
     }
 
-    createButton.addEventListener('click', function() {
+    createButton.addEventListener('click', function () {
         if (this.classList.contains('enabled')) {
             generateStory();
         } else {
@@ -458,18 +457,18 @@ function showNextQuestion() {
         const nextQuestion = document.getElementById(`question${currentQuestionIndex + 2}`);
         if (nextQuestion) {
             if (DEBUG_MODE) console.log(`👁️ Sonraki soru gösteriliyor: question${currentQuestionIndex + 2}`);
-            
+
             setTimeout(() => {
                 nextQuestion.style.display = 'block';
                 nextQuestion.classList.add('visible');
                 currentQuestionIndex++;
-                
+
                 // Smooth scroll to next question
-                nextQuestion.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center' 
+                nextQuestion.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
                 });
-                
+
                 checkIfComplete();
             }, 500);
         }
@@ -479,10 +478,10 @@ function showNextQuestion() {
 // Form tamamlanma kontrolü
 function checkIfComplete() {
     const completedAnswers = Object.keys(selectedChoices).length;
-    const allAnswersValid = Object.values(selectedChoices).every(answer => 
+    const allAnswersValid = Object.values(selectedChoices).every(answer =>
         answer !== null && answer !== undefined && answer.toString().trim() !== ''
     );
-    
+
     if (DEBUG_MODE) {
         console.log('🔍 Tamamlanma kontrolü:', {
             completedAnswers,
@@ -491,7 +490,7 @@ function checkIfComplete() {
             selectedChoices
         });
     }
-    
+
     if (completedAnswers === totalQuestions && allAnswersValid) {
         createButton.classList.add('enabled');
         createButton.style.opacity = '1';
@@ -507,9 +506,9 @@ function checkIfComplete() {
 // Hikaye oluşturma fonksiyonu
 async function generateStory() {
     if (DEBUG_MODE) console.log('📖 Hikaye oluşturma başlatılıyor...');
-    
+
     const finalAnswers = { ...selectedChoices };
-    
+
     localStorage.setItem('storyCreationAnswers', JSON.stringify(finalAnswers));
     if (DEBUG_MODE) console.log('✅ Cevaplar localStorage\'a kaydedildi:', finalAnswers);
 
@@ -517,7 +516,7 @@ async function generateStory() {
 }
 
 // Cache yönetimi için ek fonksiyonlar
-window.clearQuestionsCache = function() {
+window.clearQuestionsCache = function () {
     try {
         const keys = Object.keys(localStorage);
         keys.forEach(key => {

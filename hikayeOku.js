@@ -29,12 +29,12 @@ function showLoading() {
 function getStoryFromLocalStorage() {
     const urlParams = new URLSearchParams(window.location.search);
     const storyId = urlParams.get('storyId');
-    
+
     if (!storyId) {
         if (DEBUG_MODE) console.error('❌ storyId URL parametresinde bulunamadı.');
         return null;
     }
-    
+
     try {
         const cachedStory = localStorage.getItem(`story-${storyId}`);
         if (cachedStory) {
@@ -56,7 +56,7 @@ function generateStoryTitle(story) {
         const cachedAnswers = localStorage.getItem('storyCreationAnswers');
         if (cachedAnswers) {
             const answers = JSON.parse(cachedAnswers);
-            
+
             // Kahramanın ismini bul
             let heroName = '';
             for (const [key, value] of Object.entries(answers)) {
@@ -66,7 +66,7 @@ function generateStoryTitle(story) {
                     break;
                 }
             }
-            
+
             if (heroName) {
                 // Kategori adını da al
                 const categoryName = story.originalCategory || story.metadata?.originalCategoryName || 'Macera';
@@ -76,7 +76,7 @@ function generateStoryTitle(story) {
     } catch (e) {
         if (DEBUG_MODE) console.warn('Cevaplar okunurken hata:', e);
     }
-    
+
     // Fallback: Kategori adından başlık oluştur
     const categoryName = story.originalCategory || story.metadata?.originalCategoryName || 'Büyülü';
     const storyTitles = {
@@ -89,7 +89,7 @@ function generateStoryTitle(story) {
         'uzay': 'Uzay Yolculuğu',
         'diger': 'Harika Hikaye'
     };
-    
+
     return storyTitles[categoryName.toLowerCase()] || `${categoryName} Hikayesi`;
 }
 
@@ -108,25 +108,25 @@ function generateCoverSummary(story) {
         'uzay': 'Uzayın derinliklerinde geçen muhteşem bir yolculuk...',
         'diger': 'Seni büyüleyecek özel bir hikaye...'
     };
-    
+
     // Kategoriyi tespit et
     const category = story.detectedCategory || story.originalCategory || 'diger';
     let summary = summaryTexts[category.toLowerCase()] || summaryTexts['diger'];
-    
+
     // Kahramanın ismini ekle
     try {
         const cachedAnswers = localStorage.getItem('storyCreationAnswers');
         if (cachedAnswers) {
             const answers = JSON.parse(cachedAnswers);
             let heroName = '';
-            
+
             for (const [key, value] of Object.entries(answers)) {
                 if (typeof value === 'string' && value.length > 0 && value.length <= 20) {
                     heroName = value;
                     break;
                 }
             }
-            
+
             if (heroName) {
                 summary = `${heroName}'nin ${summary.charAt(0).toLowerCase() + summary.slice(1)}`;
             }
@@ -134,7 +134,7 @@ function generateCoverSummary(story) {
     } catch (e) {
         if (DEBUG_MODE) console.warn('Kahraman ismi tespit edilemedi:', e);
     }
-    
+
     return summary;
 }
 
@@ -168,14 +168,14 @@ function renderStory(story) {
         bookContainer.innerHTML = `<div class="page is-active error-page"><p>Hikaye bulunamadı veya hatalı. 😔</p></div>`;
         return;
     }
-    
+
     currentPages = [];
     bookContainer.innerHTML = '';
 
     // Dinamik başlık ve özet oluştur
     const storyTitle = generateStoryTitle(story);
     const coverSummary = generateCoverSummary(story);
-    
+
     if (DEBUG_MODE) {
         console.log('📖 Hikaye bilgileri:', {
             originalTitle: story.title,
@@ -188,10 +188,10 @@ function renderStory(story) {
 
     // Kapak sayfası oluşturma
     const coverPage = createPageElement(
-        'cover-page', 
-        story.backgroundImage, 
-        storyTitle, 
-        coverSummary, 
+        'cover-page',
+        story.backgroundImage,
+        storyTitle,
+        coverSummary,
         true
     );
     coverPage.classList.add('is-active');
@@ -238,12 +238,12 @@ function createPageElement(id, imageUrl, title, text, isCover = false) {
     const img = document.createElement('img');
     img.src = imageUrl || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGE5MGUyIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5IaWtheWUgUmVzbWk8L3RleHQ+Cjwvc3ZnPgo=';
     img.alt = title || 'Hikaye Sayfası';
-    
+
     // Resim yükleme hatası durumunda fallback
-    img.onerror = function() {
+    img.onerror = function () {
         this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGE5MGUyIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5IaWtheWUgUmVzbWk8L3RleHQ+Cjwvc3ZnPgo=';
     };
-    
+
     pageDiv.appendChild(img);
 
     // Metin alanı
@@ -255,12 +255,12 @@ function createPageElement(id, imageUrl, title, text, isCover = false) {
         h2.textContent = title;
         textDiv.appendChild(h2);
     }
-    
+
     const p = document.createElement('p');
     p.textContent = text;
     textDiv.appendChild(p);
 
-    
+
 
     pageDiv.appendChild(textDiv);
 
@@ -327,8 +327,8 @@ function prevPage() {
 }
 
 // Klavye kontrolleri ekle
-document.addEventListener('keydown', function(e) {
-    switch(e.key) {
+document.addEventListener('keydown', function (e) {
+    switch (e.key) {
         case 'ArrowRight':
         case ' ': // Space tuşu
             e.preventDefault();
@@ -358,15 +358,15 @@ prevBtn.addEventListener('click', prevPage);
 // Sayfa yüklendiğinde hikayeyi getir
 document.addEventListener('DOMContentLoaded', async () => {
     if (DEBUG_MODE) console.log('📖 Hikaye okuma sayfası yüklendi.');
-    
+
     let story = getStoryFromLocalStorage();
-    
+
     // Eğer localStorage'da hikaye yoksa test hikayesi kullan
     if (!story) {
         if (DEBUG_MODE) console.log('⚠️ localStorage\'da hikaye bulunamadı, test hikayesi yükleniyor.');
         story = createTestStory();
     }
-    
+
     if (story) {
         renderStory(story);
     } else {

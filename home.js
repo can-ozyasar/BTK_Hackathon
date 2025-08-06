@@ -1,4 +1,3 @@
-// --- Ana Sayfa (1. Sayfa) için optimize edilmiş ve güncel kod ---
 
 const API_BASE_URL = 'https://btk-proje-backend.onrender.com';
 const DEBUG_MODE = true;
@@ -9,7 +8,7 @@ const DEBUG_MODE = true;
  */
 async function fetchAndCacheCategories() {
   const ctaButton = document.querySelector('.cta-button');
-  
+
   if (ctaButton) {
     ctaButton.disabled = true;
     ctaButton.textContent = 'Yükleniyor...';
@@ -30,25 +29,25 @@ async function fetchAndCacheCategories() {
     }
 
     const data = await response.json();
-    
+
     // Gelen veriyi işleyip categories array'ini döndürme
     let categories;
     if (data.success && Array.isArray(data.data)) {
-        categories = data.data;
+      categories = data.data;
     } else if (data.success && data.data && Array.isArray(data.data.categories)) {
-        categories = data.data.categories;
+      categories = data.data.categories;
     } else if (Array.isArray(data)) {
-        categories = data;
+      categories = data;
     } else if (data.categories && Array.isArray(data.categories)) {
-        categories = data.categories;
+      categories = data.categories;
     } else {
-        throw new Error('Beklenmeyen API response formatı');
+      throw new Error('Beklenmeyen API response formatı');
     }
-    
-    // Veriyi localStorage'a kaydet (güncelleme işlemi burada gerçekleşir)
+
+    // Veriyi localStorage'a kaydet 
     localStorage.setItem('cachedCategories', JSON.stringify(categories));
     if (DEBUG_MODE) console.log('✅ localStorage en güncel verilerle güncellendi.');
-    
+
     // Yönlendirme yap
     window.location.href = 'hikayeSec.html';
 
@@ -64,11 +63,9 @@ async function fetchAndCacheCategories() {
   }
 }
 
-// Butona tıklanma olayını dinleme
 document.addEventListener('DOMContentLoaded', () => {
   const ctaButton = document.querySelector('.cta-button');
-  
-  // Loading animasyonu için CSS (opsiyonel)
+
   const style = document.createElement('style');
   style.textContent = `
     .cta-button.loading { cursor: not-allowed; opacity: 0.8; transition: opacity 0.3s; }

@@ -1,11 +1,10 @@
-
 /* === Genel ve Temel Ayarlar === */
 :root {
     /* Renk Paleti */
     --header-border: #d9d6fe;
     --text-dark: #2c3e50;
     --logo-color: #e9e7f9;
-    
+
     /* Kategori Renkleri */
     --cat-pink: #FCE7E9;
     --cat-light-blue: #D6EEF9;
@@ -15,8 +14,10 @@
     --cat-cyan: #D4F1F4;
 }
 
-/* Tüm kutu modelini daha sezgisel hale getirir */
-*, *::before, *::after {
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -24,7 +25,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* Yumuşak arkaplan geçişi */
+
     background: linear-gradient(135deg, #312157 10%, #52e1f1 90%);
     color: var(--text-dark);
     min-height: 100vh;
@@ -37,13 +38,13 @@ body {
     width: 100%;
     padding: 1.5rem 2%;
     border-bottom: 2px solid var(--header-border);
-    background-size: 250px 40px; /* Desenin boyutu */
+    background-size: 250px 40px;
     background-repeat: repeat;
     background-image: linear-gradient(135deg, rgba(158, 232, 250, 0.1) 15%, transparent 35%, transparent 50%, rgba(229, 199, 223, 0.1) 50%, rgba(225, 225, 229, 0.1) 75%, transparent 75%, transparent);
 }
 
 .logo {
-    border : 2px solid var(--header-border);
+    border: 2px solid var(--header-border);
     padding: 0.5rem 1rem;
     border-radius: 25px;
     display: inline-flex;
@@ -56,9 +57,11 @@ body {
 
 .logo:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-1px); /* Yukarıya hafif hareket */
+    transform: translateY(-1px);
+    /* Yukarıya hafif hareket */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
+
 /* === Ana İçerik Alanı === */
 .content-container {
     flex-grow: 1;
@@ -73,26 +76,29 @@ body {
 
 .content-container h1 {
     color: rgb(236, 241, 245);
-     border-style: solid;
+    border-style: solid;
     border-radius: 10%;
     font-size: 2.5rem;
     font-weight: 700;
     padding: 1rem 0.5rem;
     margin-bottom: 3rem;
 }
+
 .creation-step {
     color: #fff;
     font-size: 1.2rem;
     font-weight: 600;
-    margin-top: 1rem; /* Başlık ve kart arası boşluk */
-    margin-left: 1rem; /* Başlık ve kart arası boşluk */
+    margin-top: 1rem;
+    margin-left: 1rem;
 }
+
+
 /* === Kategori Izgarası (Grid) === */
 .category-grid {
     display: grid;
     /* Masaüstünde 3 sütunlu yapı */
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem; /* Kartlar arası boşluk */
+    gap: 2rem;
     width: 100%;
     max-width: 800px;
 }
@@ -102,13 +108,13 @@ body {
     background-color: #ffffff;
     border-radius: 25px;
     padding: 2rem 1rem;
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem; /* İkon ve yazı arası boşluk */
-    
+    gap: 1rem;
+
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 700;
@@ -120,7 +126,8 @@ body {
 }
 
 .category-card:hover {
-    transform: translateY(-8px); /* Üzerine gelince hafifçe yukarı kalkar */
+    transform: translateY(-8px);
+    /* Üzerine gelince hafifçe yukarı kalkar */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
@@ -135,13 +142,33 @@ body {
 /* Kartların renklerini atayan sınıflar */
 
 
-.category-card.color-pink { background-color: #F8BBD0; }
-.category-card.color-light-blue { background-color: #7cd3fb; }
-.category-card.color-purple { background-color: #E1BEE7; }
-.category-card.color-cyan { background-color: #40E0D0; } 
-.category-card.color-green { background-color: #90EE90; }
-.category-card.color-yellow { background-color: #FDFD96; }
-.category-card.color-purple { background-color: #DDA0DD; } 
+.category-card.color-pink {
+    background-color: #F8BBD0;
+}
+
+.category-card.color-light-blue {
+    background-color: #7cd3fb;
+}
+
+.category-card.color-purple {
+    background-color: #E1BEE7;
+}
+
+.category-card.color-cyan {
+    background-color: #40E0D0;
+}
+
+.category-card.color-green {
+    background-color: #90EE90;
+}
+
+.category-card.color-yellow {
+    background-color: #FDFD96;
+}
+
+.category-card.color-purple {
+    background-color: #DDA0DD;
+}
 
 
 /* === Hareketli Hayvanlar === */
@@ -160,9 +187,9 @@ body {
     position: absolute;
     font-size: 3rem;
     will-change: transform;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    
-    /* Buraya ekle */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+
+
     transition: transform 0.5s linear;
 }
 
@@ -211,14 +238,14 @@ body {
         gap: 0.5rem;
         font-size: 0.9rem;
     }
-    
+
     .category-card .icon-container {
         width: 50px;
         height: 50px;
     }
+
     .category-card .icon-container svg {
         width: 36px;
         height: 36px;
     }
 }
-
