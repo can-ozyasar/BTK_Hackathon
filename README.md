@@ -1,1 +1,2 @@
 Bu repo BTK Hackathon 2025 yarışması için NeuroToken isimli takımımızın geliştiricileri olan Efsun Boz ve Muhammed can Özyaşar tarafından geliştirilmiş " Hayalperest Hikayeler " isimli projemize aittir . 
+canlı site url : https://can-ozyasar.github.io/BTK_Hackathon/
