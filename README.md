@@ -2,11 +2,25 @@
 
 BTK hackathon sürecinde geliştirilen web tabanlı prototip.
 
-## Öne Çıkanlar
+## Bu Repo Ne İçin Var?
+BTK hackathon fikrini web tabanlı bir prototip olarak göstermek için oluşturuldu.
+
+Bu README'nin amacı; repoya ilk kez gelen birinin projenin neden açıldığını, içinde ne bulunduğunu ve nereden başlaması gerektiğini hızlıca anlamasını sağlamaktır.
+
+## İçerik ve Kapsam
+Bu repoda öne çıkan içerikler şunlardır:
 - Statik web arayüzü
 - Hackathon fikrini hızlı göstermek için sade yapı
 - HTML/CSS/JS ile kolayca incelenebilir proje
-- Kullanılan ana teknolojiler: JavaScript, HTML, CSS
+- Tarayıcıda incelenebilen HTML arayüz dosyaları
+
+## Kimler İçin Faydalı?
+Hackathon demosunu incelemek, fikrin teknik kapsamını anlamak veya prototipi geliştirmek isteyenler için uygundur.
+
+## Kullanılan Teknolojiler
+- JavaScript
+- HTML
+- CSS
 
 ## Çalıştırma
 ```bash
@@ -18,13 +32,13 @@ index.html dosyasını tarayıcıda açın.
 
 ## Proje Yapısı
 - `resimler` - 11 dosya
-- `README.md` - 1 dosya
 - `hikayeOku.css` - 1 dosya
 - `hikayeOku.html` - 1 dosya
 - `hikayeOku.js` - 1 dosya
 - `hikayeSec.css` - 1 dosya
 - `hikayeSec.html` - 1 dosya
 - `hikayeSec.js` - 1 dosya
+- `home.css` - 1 dosya
 
 ## Geliştirme Notları
 - README içeriği, repodaki mevcut dosya yapısı ve proje açıklamasına göre düzenlenmiştir.
